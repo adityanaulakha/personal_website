@@ -13,8 +13,8 @@ function AboutClean() {
                 show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
         };
 
-        return (
-                <section id="about" className="w-full flex justify-center py-16">
+                return (
+                        <section className="w-full flex justify-center py-16">
                         <div className="w-full max-w-[96rem] px-6">
                                 <motion.h2
                                         initial={{ opacity: 0, y: 12 }}

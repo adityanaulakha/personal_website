@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import MobileNavbar from './components/MobileNavbar';
 import HeroSection from './components/HeroSection';
-import About from './components/About';
+import About from './components/About.jsx';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Achievements from './components/Achievements';
