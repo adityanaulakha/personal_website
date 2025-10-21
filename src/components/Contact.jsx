@@ -1,4 +1,4 @@
-import Hyperspeed from './Hyperspeed';
+import Hyperspeed from './HyperSpeed';
 import './Contact.css';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { FaGlobe } from 'react-icons/fa';
