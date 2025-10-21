@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+body {
+	@apply bg-black;
+    font-family: Poppins, sans-serif;
+}
+/* Responsive base without visual changes */
+html, body, #root { min-height: 100%; }
+/* Avoid accidental horizontal scroll on small screens */
+html, body { overflow-x: hidden; }
+/* Make media responsive by default */
+img, video, canvas, svg { max-width: 100%; height: auto; }
