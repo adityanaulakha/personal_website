@@ -57,29 +57,34 @@ const MobileNavbar = ({ items = [], className = '' }) => {
   return (
     <div className={`md:hidden ${className}`}>
       {/* Enhanced Bottom Navigation */}
-      <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-sm z-[1000]">
-        <ul className="flex items-center justify-around gap-1 rounded-[28px] border border-white/20 bg-black/40 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] px-2 py-3">
+      <nav
+        role="navigation"
+        aria-label="Mobile navigation"
+        className="fixed inset-x-4 z-[1000]"
+        style={{ top: 'calc(env(safe-area-inset-top, 0px) + 64px)' }}
+      >
+        <ul className="flex items-center justify-between gap-1 rounded-[28px] border border-white/20 bg-black/50 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] p-2">
           {items.map((item) => {
             const Icon = iconMap[item.label] || HiHome;
             const isActive = activeHref === item.href;
             
             return (
-              <li key={item.label} className="flex-1">
+              <li key={item.label} className="flex-1 min-w-0">
                 <a
                   href={item.href}
                   onClick={() => handleClick(item.href)}
-                  className={`flex flex-col items-center justify-center gap-1 py-2 px-3 rounded-[20px] transition-all duration-300 ${
+                  className={`w-full h-12 min-h-[44px] flex flex-col items-center justify-center gap-0.5 rounded-[20px] transition-all duration-300 ${
                     isActive 
-                      ? 'bg-gradient-to-br from-[#4F58FF] to-[#00C9A7] text-white scale-105 shadow-lg' 
-                      : 'text-white/60 hover:text-white/90 hover:bg-white/10'
+                      ? 'bg-gradient-to-br from-[#4F58FF] to-[#00C9A7] text-white shadow-lg' 
+                      : 'text-white/70 hover:text-white/90 hover:bg-white/10'
                   }`}
                   aria-label={item.ariaLabel || item.label}
                 >
                   <Icon className={`transition-all duration-300 ${
-                    isActive ? 'text-xl' : 'text-lg'
+                    isActive ? 'text-[22px]' : 'text-[18px]'
                   }`} />
-                  <span className={`text-[10px] font-medium transition-all duration-300 ${
-                    isActive ? 'opacity-100' : 'opacity-0 absolute'
+                  <span className={`leading-none text-[10px] font-medium transition-opacity duration-300 ${
+                    isActive ? 'opacity-100' : 'opacity-0'
                   }`}>
                     {item.label}
                   </span>
@@ -90,14 +95,7 @@ const MobileNavbar = ({ items = [], className = '' }) => {
         </ul>
       </nav>
 
-      {/* Floating Action Button (Optional - for quick contact) */}
-      <a
-        href="#contact"
-        className="fixed bottom-24 right-6 w-14 h-14 rounded-full bg-gradient-to-br from-[#4F58FF] to-[#00C9A7] flex items-center justify-center shadow-[0_8px_24px_rgba(79,88,255,0.4)] z-[999] transition-all duration-300 hover:scale-110 active:scale-95"
-        aria-label="Quick Contact"
-      >
-        <HiMail className="text-white text-2xl" />
-      </a>
+      {/* Removed floating contact FAB per request to avoid duplicate mail icon in mobile view */}
     </div>
   );
 };

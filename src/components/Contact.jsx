@@ -1,7 +1,7 @@
 import Hyperspeed from './HyperSpeed';
 import './Contact.css';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
-import { FaGlobe } from 'react-icons/fa';
+import { FaGlobe, FaInstagram } from 'react-icons/fa';
 
 function Contact() {
   return (
@@ -83,13 +83,13 @@ function Contact() {
                 <SiGithub />
               </a>
               <a 
-                href="https://yourportfolio.com" 
+                href="https://www.instagram.com/adityanaulakha.tech/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="social-link"
-                aria-label="Portfolio"
+                aria-label="Instagram"
               >
-                <FaGlobe />
+                <FaInstagram />
               </a>
               <a 
                 href="https://linkedin.com/in/adityanaulakha" 
