@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { HiHome, HiUser, HiLightningBolt, HiBriefcase, HiFolder, HiMail } from 'react-icons/hi';
+import { HiHome, HiUser, HiLightningBolt, HiBriefcase, HiFolder, HiMail, HiBadgeCheck } from 'react-icons/hi';
 
 const MobileNavbar = ({ items = [], className = '' }) => {
   const [activeHref, setActiveHref] = useState('#home');
@@ -10,6 +10,7 @@ const MobileNavbar = ({ items = [], className = '' }) => {
     'About': HiUser,
     'Skills': HiLightningBolt,
     'Experience': HiBriefcase,
+    'Achievements': HiBadgeCheck,
     'Projects': HiFolder,
     'Contact': HiMail
   };
@@ -54,6 +55,20 @@ const MobileNavbar = ({ items = [], className = '' }) => {
     setActiveHref(href);
   };
 
+  const handleNav = (e, href) => {
+    // Make taps feel instantaneous and avoid default hash jump
+    e.preventDefault();
+    setActiveHref(href);
+
+    const id = href.startsWith('#') ? href.slice(1) : null;
+    if (id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   return (
     <div className={`md:hidden ${className}`}>
       {/* Enhanced Bottom Navigation */}
@@ -72,8 +87,11 @@ const MobileNavbar = ({ items = [], className = '' }) => {
               <li key={item.label} className="flex-1 min-w-0">
                 <a
                   href={item.href}
-                  onClick={() => handleClick(item.href)}
-                  className={`w-full h-12 min-h-[44px] flex flex-col items-center justify-center gap-0.5 rounded-[20px] transition-all duration-300 ${
+                  onClick={(e) => handleNav(e, item.href)}
+                  onTouchStart={() => setActiveHref(item.href)}
+                  style={{ touchAction: 'manipulation' }}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`w-full h-14 min-h-[48px] flex flex-col items-center justify-center gap-0.5 rounded-[20px] transition-all duration-150 ${
                     isActive 
                       ? 'bg-gradient-to-br from-[#4F58FF] to-[#00C9A7] text-white shadow-lg' 
                       : 'text-white/70 hover:text-white/90 hover:bg-white/10'
@@ -83,7 +101,7 @@ const MobileNavbar = ({ items = [], className = '' }) => {
                   <Icon className={`transition-all duration-300 ${
                     isActive ? 'text-[22px]' : 'text-[18px]'
                   }`} />
-                  <span className={`leading-none text-[10px] font-medium transition-opacity duration-300 ${
+                  <span className={`leading-none text-[11px] font-medium transition-opacity duration-150 ${
                     isActive ? 'opacity-100' : 'opacity-0'
                   }`}>
                     {item.label}

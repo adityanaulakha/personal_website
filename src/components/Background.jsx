@@ -108,15 +108,16 @@ const Particles = ({
     const isMobile = window.innerWidth < 768;
     const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
     
-    // Adjust settings based on device
+    // Adjust settings based on device (allow higher particles on mobile per request)
     let adjustedParticleCount = particleCount;
     let adjustedSpeed = speed;
-    
+
     if (isMobile) {
-      adjustedParticleCount = Math.min(particleCount * 0.5, 100);
-      adjustedSpeed = speed * 0.5;
+      // Keep performance in mind but increase density on mobile
+      adjustedParticleCount = Math.min(Math.round(particleCount * 0.95), 220);
+      adjustedSpeed = speed * 0.6;
     } else if (isTablet) {
-      adjustedParticleCount = Math.min(particleCount * 0.7, 150);
+      adjustedParticleCount = Math.min(Math.round(particleCount * 0.9), 220);
       adjustedSpeed = speed * 0.7;
     }
 

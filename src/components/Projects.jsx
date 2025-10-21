@@ -1,69 +1,44 @@
 import './Projects.css';
 import { SiGithub } from 'react-icons/si';
 import { HiExternalLink } from 'react-icons/hi';
+import Project1 from '../assets/Project-1.png';
+import Project2 from '../assets/Project-2.png';
+import Project3 from '../assets/Project-3.png';
+
 
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce platform with user authentication, product management, shopping cart, and payment integration. Features include real-time inventory updates and order tracking.",
-    coverImage: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=500&fit=crop",
-    techStack: ["React", "Node.js", "MongoDB", "Express", "Stripe", "Tailwind CSS"],
-    githubLink: "https://github.com/yourusername/ecommerce",
-    liveLink: "https://ecommerce-demo.vercel.app",
+    title: "OrbitalVision",
+    description: "Real-time space object detection and tracking system using YOLOv8 + DeepSORT, achieving 0.90 mAP and 93% precision on synthetic space station data. Includes Streamlit dashboard with Eco-Mode and Falcon-based data robustness.",
+    coverImage: Project1,
+    techStack: ["YOLOv8", "DeepSORT", "Streamlit", "Python", "Falcon"],
+    githubLink: "https://github.com/adityanaulakha/Build-with-India-Space-Station-Hackathon",
+    liveLink: "https://orbitalvision.streamlit.app/",
     color: "#4F58FF"
   },
   {
     id: 2,
-    title: "Task Management App",
-    description: "A collaborative task management application with drag-and-drop functionality, real-time updates, and team collaboration features. Includes kanban boards and calendar views.",
-    coverImage: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&h=500&fit=crop",
-    techStack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "React DnD"],
-    githubLink: "https://github.com/yourusername/task-manager",
-    liveLink: "https://taskmanager-demo.vercel.app",
+    title: "CleanSight",
+    description: "AI-powered garbage detection SPA built with React, Firebase, and Python YOLO microservice. Features 4 user roles, Google/Email auth, reusable UI components, and real-time AI detection dashboards.",
+    coverImage: Project2,
+    techStack: ["React", "Firebase", "Python", "YOLO", "Vercel"],
+    githubLink: "https://github.com/adityanaulakha/CleanSight-Zero-to-Onet",
+    liveLink: "https://cleansight-zero-to-one.vercel.app/",
     color: "#00C9A7"
   },
   {
     id: 3,
-    title: "Social Media Dashboard",
-    description: "Analytics dashboard for social media metrics with beautiful data visualizations, custom date ranges, and export functionality. Integrates with multiple social platforms.",
-    coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
-    techStack: ["Vue.js", "Chart.js", "Firebase", "REST API", "Bootstrap"],
-    githubLink: "https://github.com/yourusername/social-dashboard",
-    liveLink: "https://social-dashboard-demo.netlify.app",
-    color: "#FF6B6B"
-  },
-  {
-    id: 4,
-    title: "Weather Forecast App",
-    description: "Real-time weather application with location-based forecasts, interactive maps, and severe weather alerts. Features 7-day forecasts and hourly updates.",
-    coverImage: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&h=500&fit=crop",
-    techStack: ["React", "OpenWeather API", "Mapbox", "Axios", "CSS3"],
-    githubLink: "https://github.com/yourusername/weather-app",
-    liveLink: "https://weather-app-demo.netlify.app",
-    color: "#FFA500"
-  },
-  {
-    id: 5,
-    title: "Portfolio Builder",
-    description: "A drag-and-drop portfolio website builder with customizable templates, dark mode support, and SEO optimization. Export as static HTML or deploy directly.",
-    coverImage: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=500&fit=crop",
-    techStack: ["React", "Redux", "Styled Components", "Netlify", "Markdown"],
-    githubLink: "https://github.com/yourusername/portfolio-builder",
-    liveLink: "https://portfolio-builder.vercel.app",
+    title: "CodePunk v1.0",
+    description: "Responsive hackathon website built with React.js and Tailwind CSS featuring event details, schedules, and CTAs. Deployed on Vercel with optimized load times and seamless user experience.",
+    coverImage: Project3,
+    techStack: ["React", "Tailwind CSS", "Vercel"],
+    githubLink: "https://github.com/adityanaulakha/-CodePunk-v1.0-",
+    liveLink: "https://code-punk-v1-0.vercel.app/",
     color: "#9D4EDD"
-  },
-  {
-    id: 6,
-    title: "Chat Application",
-    description: "Real-time chat application with private messaging, group chats, file sharing, and emoji support. Built with WebSocket for instant communication.",
-    coverImage: "https://images.unsplash.com/photo-1611606063065-ee7946f0787a?w=800&h=500&fit=crop",
-    techStack: ["React", "Socket.io", "Node.js", "Express", "MongoDB"],
-    githubLink: "https://github.com/yourusername/chat-app",
-    liveLink: "https://chat-app-demo.herokuapp.com",
-    color: "#06B6D4"
   }
 ];
+
 
 function Projects() {
   return (
@@ -79,9 +54,11 @@ function Projects() {
               {/* Cover Image */}
               <div className="project-image-container">
                 <img 
-                  src={project.coverImage} 
-                  alt={project.title}
+                  src={project.coverImage}
+                  alt={`${project.title} cover`}
                   className="project-image"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="project-overlay" style={{ background: `linear-gradient(135deg, ${project.color}20, ${project.color}40)` }}>
                   <div className="project-links">

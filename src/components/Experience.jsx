@@ -3,49 +3,17 @@ import './Experience.css';
 const experiences = [
   {
     id: 1,
-    role: "Senior Full Stack Developer",
-    company: "Tech Corp",
-    type: "Full-time",
-    duration: "Jan 2023 - Present",
-    location: "San Francisco, CA",
-    description: "Leading development of scalable web applications using React, Node.js, and AWS. Mentoring junior developers and implementing best practices.",
-    skills: ["React", "Node.js", "AWS", "TypeScript", "MongoDB"],
-    color: "#4F58FF"
-  },
-  {
-    id: 2,
-    role: "Frontend Developer",
-    company: "Digital Agency",
-    type: "Full-time",
-    duration: "Jun 2021 - Dec 2022",
+    role: "Front-end Developer Intern",
+    company: "Baoiam Innovations Pvt. Ltd",
+    type: "Internship",
+    duration: "Jun 2024 - Aug 2024",
     location: "Remote",
-    description: "Developed responsive web applications and interactive UI components. Collaborated with designers and backend team to deliver pixel-perfect solutions.",
-    skills: ["React", "Tailwind CSS", "JavaScript", "REST APIs"],
-    color: "#00C9A7"
-  },
-  {
-    id: 3,
-    role: "Software Engineering Intern",
-    company: "StartUp Inc",
-    type: "Internship",
-    duration: "Jan 2021 - May 2021",
-    location: "New York, NY",
-    description: "Built features for the company's main product. Worked on bug fixes, code reviews, and learned industry best practices.",
-    skills: ["JavaScript", "Python", "Git", "Docker"],
-    color: "#FF6B6B"
-  },
-  {
-    id: 4,
-    role: "Web Developer Intern",
-    company: "Creative Studio",
-    type: "Internship",
-    duration: "Jun 2020 - Dec 2020",
-    location: "Los Angeles, CA",
-    description: "Created landing pages and maintained client websites. Gained hands-on experience with modern web technologies.",
-    skills: ["HTML", "CSS", "JavaScript", "WordPress"],
-    color: "#FFA500"
+    description: "Developed a responsive cosmetics e-commerce platform using React.js and Tailwind CSS for mobile and desktop users across multiple browsers. Collaborated with cross-functional teams, delivering iterative releases and resolving 20+ UI/UX issues. Managed version control and collaborative debugging via Git.",
+    skills: ["React.js", "Tailwind CSS", "Git", "UI/UX"],
+    color: "#4F58FF"
   }
 ];
+
 
 function Experience() {
   return (

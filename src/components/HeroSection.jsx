@@ -5,16 +5,16 @@ const HeroSection = () => {
     <section className="relative w-full h-screen overflow-hidden">
       {/* Particles background */}
       <div className="absolute inset-0">
-        <Background
-          particleColors={["#4F58FF", "#4F58FF"]}
-          particleCount={150}
-          particleSpread={10}
-          speed={0.05}
-          particleBaseSize={80}
-          moveParticlesOnHover={false}
-          alphaParticles={false}
-          disableRotation={false}
-        />
+                <Background
+                    particleColors={["#4F58FF", "#4F58FF"]}
+                    particleCount={220}
+                    particleSpread={10}
+                    speed={0.05}
+                    particleBaseSize={80}
+                    moveParticlesOnHover={false}
+                    alphaParticles={false}
+                    disableRotation={false}
+                />
       </div>
 
       {/* Content overlay */}
@@ -49,38 +49,40 @@ const HeroSection = () => {
             </p>
 
             {/* CTA buttons */}
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a
-                href="https://drive.google.com/file/d/1ZmI9WiQxZzC-hF6Y7xMy_cJn2aoaAseD/view?usp=sharing"
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-white shadow-sm backdrop-blur-sm transition-all hover:bg-white/20"
-            >
-                View Resume
-                <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                >
-                <path
-                    d="M5 12h14M13 5l7 7-7 7"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-                </svg>
-            </a>
-            <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-full border border-blue-400/30 bg-blue-500/10 px-6 py-3 text-blue-200 shadow-sm backdrop-blur-sm transition-all hover:bg-blue-500/20"
-            >
-                Let's Connect
-            </a>
-            </div>
+                        <div className="mt-10 flex flex-wrap justify-center gap-4">
+                            <a
+                                href="https://drive.google.com/file/d/1ZmI9WiQxZzC-hF6Y7xMy_cJn2aoaAseD/view?usp=sharing"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 rounded-full px-7 py-3 text-white shadow-sm backdrop-blur-sm transition-all
+                                    bg-gradient-to-r from-indigo-500 via-blue-500 to-indigo-500 hover:brightness-110"
+                            >
+                                View Resume
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M5 12h14M13 5l7 7-7 7"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            </a>
+                            <a
+                                href="#contact"
+                                className="inline-flex items-center gap-2 rounded-full px-7 py-3 text-blue-100 shadow-sm backdrop-blur-sm transition-all
+                                    border border-blue-400/40 bg-blue-500/10 hover:bg-blue-500/20"
+                            >
+                                Let's Connect
+                            </a>
+                        </div>
         </div>
         </div>
     </section>

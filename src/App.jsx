@@ -5,9 +5,11 @@ import HeroSection from './components/HeroSection';
 // import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
+import Achievements from './components/Achievements';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
-import Loader from './components/Loader';
+import Loader from './components/Loader.jsx';
+
 
 
 function App() {
@@ -83,6 +85,7 @@ function App() {
               { label: 'About', href: '#about' },
               { label: 'Skills', href: '#skills' },
               { label: 'Experience', href: '#experience' },
+              { label: 'Achievements', href: '#achievements' },
               { label: 'Projects', href: '#projects' },
               { label: 'Contact', href: '#contact' }
             ]}
@@ -97,25 +100,29 @@ function App() {
           { label: 'About', href: '#about' },
           { label: 'Skills', href: '#skills' },
           { label: 'Experience', href: '#experience' },
+          { label: 'Achievements', href: '#achievements' },
           { label: 'Projects', href: '#projects' },
           { label: 'Contact', href: '#contact' }
         ]}
         className="md:hidden"
       />
-      <div id="home" className="pt-[80px] md:pt-0">
+      <div id="home" className="pt-[80px] md:pt-0 scroll-mt-24">
         <HeroSection />
       </div>
-      /
-      <div id="skills">
+      
+      <div id="skills" className="scroll-mt-24">
         <Skills />
       </div>
-      <div id="experience">
+      <div id="experience" className="scroll-mt-24">
         <Experience />
       </div>
-      <div id="projects">
+      <div id="achievements" className="scroll-mt-24">
+        <Achievements />
+      </div>
+      <div id="projects" className="scroll-mt-24">
         <Projects />
       </div>
-      <div id="contact">
+      <div id="contact" className="scroll-mt-24">
         <Contact />
       </div>
     </>
