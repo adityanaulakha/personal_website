@@ -4,9 +4,53 @@ body {
 	@apply bg-black;
     font-family: Poppins, sans-serif;
 }
+
+/* Performance optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Responsive base without visual changes */
-html, body, #root { min-height: 100%; }
+html, body, #root { 
+  min-height: 100%; 
+}
+
 /* Avoid accidental horizontal scroll on small screens */
-html, body { overflow-x: hidden; }
+html, body { 
+  overflow-x: hidden; 
+}
+
 /* Make media responsive by default */
-img, video, canvas, svg { max-width: 100%; height: auto; }
+img, video, canvas, svg { 
+  max-width: 100%; 
+  height: auto; 
+}
+
+/* Hardware acceleration for animations */
+canvas {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -5,7 +5,14 @@ const Loader = ({ visible = true, message = "Loading…" }) => {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black">
+    <div 
+      className="fixed inset-0 z-[2000] flex items-center justify-center bg-black"
+      style={{ 
+        willChange: 'opacity',
+        backfaceVisibility: 'hidden',
+        perspective: 1000
+      }}
+    >
       <StyledWrapper>
         <div className="loader-wrapper">
           <span className="loader-letter">G</span>

@@ -7,10 +7,10 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <Background
           particleColors={["#4F58FF", "#4F58FF"]}
-          particleCount={200}
+          particleCount={150}
           particleSpread={10}
-          speed={0.1}
-          particleBaseSize={100}
+          speed={0.05}
+          particleBaseSize={80}
           moveParticlesOnHover={false}
           alphaParticles={false}
           disableRotation={false}

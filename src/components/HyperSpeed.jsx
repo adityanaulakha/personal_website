@@ -349,12 +349,17 @@ const Hyperspeed = ({
           };
         }
         this.container = container;
+        
+        // Lower quality for better performance
+        const pixelRatio = Math.min(window.devicePixelRatio, 1.5);
+        
         this.renderer = new THREE.WebGLRenderer({
           antialias: false,
-          alpha: true
+          alpha: true,
+          powerPreference: "high-performance"
         });
         this.renderer.setSize(container.offsetWidth, container.offsetHeight, false);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setPixelRatio(pixelRatio);
         this.composer = new EffectComposer(this.renderer);
         container.append(this.renderer.domElement);
 
@@ -431,16 +436,16 @@ const Hyperspeed = ({
         this.bloomPass = new EffectPass(
           this.camera,
           new BloomEffect({
-            luminanceThreshold: 0.2,
+            luminanceThreshold: 0.3,
             luminanceSmoothing: 0,
-            resolutionScale: 1
+            resolutionScale: 0.8
           })
         );
 
         const smaaPass = new EffectPass(
           this.camera,
           new SMAAEffect({
-            preset: SMAAPreset.MEDIUM,
+            preset: SMAAPreset.LOW,
             searchImage: SMAAEffect.searchImageDataURL,
             areaImage: SMAAEffect.areaImageDataURL
           })

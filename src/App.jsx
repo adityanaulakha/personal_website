@@ -12,19 +12,48 @@ import Loader from './components/Loader';
 
 function App() {
   const [showLoader, setShowLoader] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  useEffect(() => {
+    // Preload critical images
+    const imageUrls = [
+      // Add your critical image URLs here
+    ];
+
+    if (imageUrls.length === 0) {
+      setImagesLoaded(true);
+      return;
+    }
+
+    let loadedCount = 0;
+    imageUrls.forEach(url => {
+      const img = new Image();
+      img.onload = img.onerror = () => {
+        loadedCount++;
+        if (loadedCount === imageUrls.length) {
+          setImagesLoaded(true);
+        }
+      };
+      img.src = url;
+    });
+  }, []);
 
   useEffect(() => {
     let minTimerDone = false;
     let windowLoadDone = false;
 
     const maybeHide = () => {
-      if (minTimerDone && windowLoadDone) setShowLoader(false);
+      if (minTimerDone && windowLoadDone && imagesLoaded) setShowLoader(false);
     };
+
+    // Shorter loader time for mobile devices
+    const isMobile = window.innerWidth < 768;
+    const loaderDuration = isMobile ? 1500 : 2500;
 
     const minTimer = setTimeout(() => {
       minTimerDone = true;
       maybeHide();
-    }, 2500);
+    }, loaderDuration);
 
     const onLoad = () => {
       windowLoadDone = true;
@@ -41,7 +70,7 @@ function App() {
       clearTimeout(minTimer);
       window.removeEventListener('load', onLoad);
     };
-  }, []);
+  }, [imagesLoaded]);
 
   return (
     <>

@@ -104,7 +104,23 @@ const Particles = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new Renderer({ depth: false, alpha: true });
+    // Detect device performance
+    const isMobile = window.innerWidth < 768;
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+    
+    // Adjust settings based on device
+    let adjustedParticleCount = particleCount;
+    let adjustedSpeed = speed;
+    
+    if (isMobile) {
+      adjustedParticleCount = Math.min(particleCount * 0.5, 100);
+      adjustedSpeed = speed * 0.5;
+    } else if (isTablet) {
+      adjustedParticleCount = Math.min(particleCount * 0.7, 150);
+      adjustedSpeed = speed * 0.7;
+    }
+
+    const renderer = new Renderer({ depth: false, alpha: true, antialias: false });
     const gl = renderer.gl;
     container.appendChild(gl.canvas);
     gl.clearColor(0, 0, 0, 0);
@@ -132,7 +148,7 @@ const Particles = ({
       container.addEventListener('mousemove', handleMouseMove);
     }
 
-    const count = particleCount;
+    const count = adjustedParticleCount;
     const positions = new Float32Array(count * 3);
     const randoms = new Float32Array(count * 4);
     const colors = new Float32Array(count * 3);
@@ -183,7 +199,7 @@ const Particles = ({
       animationFrameId = requestAnimationFrame(update);
       const delta = t - lastTime;
       lastTime = t;
-      elapsed += delta * speed;
+      elapsed += delta * adjustedSpeed;
 
       program.uniforms.uTime.value = elapsed * 0.001;
 
@@ -198,7 +214,7 @@ const Particles = ({
       if (!disableRotation) {
         particles.rotation.x = Math.sin(elapsed * 0.0002) * 0.1;
         particles.rotation.y = Math.cos(elapsed * 0.0005) * 0.15;
-        particles.rotation.z += 0.01 * speed;
+        particles.rotation.z += 0.01 * adjustedSpeed;
       }
 
       renderer.render({ scene: particles, camera });
