@@ -1,23 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Loader = () => {
+const Loader = ({ visible = true, message = "Loading…" }) => {
+  if (!visible) return null;
+
   return (
-    <StyledWrapper>
-      <div className="loader-wrapper">
-        <span className="loader-letter">G</span>
-        <span className="loader-letter">e</span>
-        <span className="loader-letter">n</span>
-        <span className="loader-letter">e</span>
-        <span className="loader-letter">r</span>
-        <span className="loader-letter">a</span>
-        <span className="loader-letter">t</span>
-        <span className="loader-letter">i</span>
-        <span className="loader-letter">n</span>
-        <span className="loader-letter">g</span>
-        <div className="loader" />
-      </div>
-    </StyledWrapper>
+    <div className="fixed inset-0 z-[2000] flex items-center justify-center bg-black">
+      <StyledWrapper>
+        <div className="loader-wrapper">
+          <span className="loader-letter">G</span>
+          <span className="loader-letter">e</span>
+          <span className="loader-letter">n</span>
+          <span className="loader-letter">e</span>
+          <span className="loader-letter">r</span>
+          <span className="loader-letter">a</span>
+          <span className="loader-letter">t</span>
+          <span className="loader-letter">i</span>
+          <span className="loader-letter">n</span>
+          <span className="loader-letter">g</span>
+          <div className="loader" />
+        </div>
+      </StyledWrapper>
+    </div>
   );
 }
 

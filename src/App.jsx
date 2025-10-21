@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import MobileNavbar from './components/MobileNavbar';
 import HeroSection from './components/HeroSection';
-import About from './components/About';
+// import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
@@ -76,9 +76,7 @@ function App() {
       <div id="home" className="pt-[80px] md:pt-0">
         <HeroSection />
       </div>
-      <div id="about">
-        <About />
-      </div>
+      /
       <div id="skills">
         <Skills />
       </div>
