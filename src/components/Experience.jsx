@@ -1,4 +1,5 @@
 import './Experience.css';
+import { HiExternalLink } from 'react-icons/hi';
 
 const experiences = [
   {
@@ -10,7 +11,9 @@ const experiences = [
     location: "Remote",
     description: "Developed a responsive cosmetics e-commerce platform using React.js and Tailwind CSS for mobile and desktop users across multiple browsers. Collaborated with cross-functional teams, delivering iterative releases and resolving 20+ UI/UX issues. Managed version control and collaborative debugging via Git.",
     skills: ["React.js", "Tailwind CSS", "Git", "UI/UX"],
-    color: "#4F58FF"
+    color: "#4F58FF",
+    // Optional: add a project link relevant to this experience
+    projectLink: "https://divueens-frontend.vercel.app/"
   }
 ];
 
@@ -78,6 +81,22 @@ function Experience() {
                       </span>
                     ))}
                   </div>
+
+                  {/* Project Link (optional) */}
+                  {exp.projectLink && (
+                    <div className="mt-4">
+                      <a
+                        href={exp.projectLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-white shadow-sm backdrop-blur-sm transition-all hover:bg-white/20"
+                        aria-label="View related project"
+                      >
+                        View Project
+                        <HiExternalLink className="w-4 h-4" />
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
