@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import MobileNavbar from './components/MobileNavbar';
 import HeroSection from './components/HeroSection';
-// import About from './components/About';
+import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Achievements from './components/Achievements';
@@ -111,6 +111,9 @@ function App() {
         className="pt-[calc(env(safe-area-inset-top,0px)+88px)] md:pt-0 scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24"
       >
         <HeroSection />
+      </div>
+      <div id="about" className="scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24">
+        <About />
       </div>
       
       <div id="skills" className="scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24">
