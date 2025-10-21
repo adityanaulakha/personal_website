@@ -106,23 +106,26 @@ function App() {
         ]}
         className="md:hidden"
       />
-      <div id="home" className="pt-[80px] md:pt-0 scroll-mt-24">
+      <div
+        id="home"
+        className="pt-[calc(env(safe-area-inset-top,0px)+88px)] md:pt-0 scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24"
+      >
         <HeroSection />
       </div>
       
-      <div id="skills" className="scroll-mt-24">
+      <div id="skills" className="scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24">
         <Skills />
       </div>
-      <div id="experience" className="scroll-mt-24">
+      <div id="experience" className="scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24">
         <Experience />
       </div>
-      <div id="achievements" className="scroll-mt-24">
+      <div id="achievements" className="scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24">
         <Achievements />
       </div>
-      <div id="projects" className="scroll-mt-24">
+      <div id="projects" className="scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24">
         <Projects />
       </div>
-      <div id="contact" className="scroll-mt-24">
+      <div id="contact" className="scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24">
         <Contact />
       </div>
     </>
