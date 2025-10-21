@@ -38,7 +38,7 @@ function App() {
         ]}
         className="md:hidden"
       />
-      <div id="home">
+      <div id="home" className="pt-[80px] md:pt-0">
         <HeroSection />
       </div>
       <div id="about">

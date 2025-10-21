@@ -61,7 +61,7 @@ const MobileNavbar = ({ items = [], className = '' }) => {
         role="navigation"
         aria-label="Mobile navigation"
         className="fixed inset-x-4 z-[1000]"
-        style={{ top: 'calc(env(safe-area-inset-top, 0px) + 64px)' }}
+        style={{ top: 'calc(env(safe-area-inset-top, 0px) + 12px)' }}
       >
         <ul className="flex items-center justify-between gap-1 rounded-[28px] border border-white/20 bg-black/50 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] p-2">
           {items.map((item) => {
