@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import MobileNavbar from './components/MobileNavbar';
 import HeroSection from './components/HeroSection';
@@ -6,12 +7,46 @@ import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import Loader from './components/Loader';
 
 
 function App() {
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    let minTimerDone = false;
+    let windowLoadDone = false;
+
+    const maybeHide = () => {
+      if (minTimerDone && windowLoadDone) setShowLoader(false);
+    };
+
+    const minTimer = setTimeout(() => {
+      minTimerDone = true;
+      maybeHide();
+    }, 2500);
+
+    const onLoad = () => {
+      windowLoadDone = true;
+      maybeHide();
+    };
+
+    if (document.readyState === 'complete') {
+      onLoad();
+    } else {
+      window.addEventListener('load', onLoad, { once: true });
+    }
+
+    return () => {
+      clearTimeout(minTimer);
+      window.removeEventListener('load', onLoad);
+    };
+  }, []);
 
   return (
     <>
+      {/* Full-screen loader overlay; site renders behind it */}
+      <Loader visible={showLoader} message="Preparing experience…" />
   {/* Desktop/Tablet nav */}
   <Navbar
       items={[
