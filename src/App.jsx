@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'motion/react';
 import Navbar from './components/Navbar';
 import MobileNavbar from './components/MobileNavbar';
 import HeroSection from './components/HeroSection';
@@ -15,6 +16,24 @@ import Loader from './components/Loader.jsx';
 function App() {
   const [showLoader, setShowLoader] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Always start at top on reload and disable browser scroll restoration
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    // If URL has a hash, remove it so we don't jump to an anchor on reload
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, []);
+  
+  // Global reveal animation (runs after loader hides)
+  const contentVariants = {
+    hidden: { opacity: 0, y: 8 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
+  };
 
   useEffect(() => {
     // Preload critical images
@@ -74,12 +93,26 @@ function App() {
     };
   }, [imagesLoaded]);
 
+  // After loader hides, ensure we are still at the top
+  useEffect(() => {
+    if (!showLoader) {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      });
+    }
+  }, [showLoader]);
+
   return (
     <>
       {/* Full-screen loader overlay; site renders behind it */}
       <Loader visible={showLoader} message="Preparing experience…" />
-  {/* Desktop/Tablet nav */}
-  <Navbar
+      <motion.div
+        variants={contentVariants}
+        initial="hidden"
+        animate={showLoader ? 'hidden' : 'show'}
+      >
+        {/* Desktop/Tablet nav */}
+        <Navbar
       items={[
               { label: 'Home', href: '#home' },
               { label: 'About', href: '#about' },
@@ -110,7 +143,7 @@ function App() {
         id="home"
         className="pt-[calc(env(safe-area-inset-top,0px)+88px)] md:pt-0 scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24"
       >
-        <HeroSection />
+  <HeroSection ready={!showLoader} />
       </div>
       <div id="about" className="scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24">
         <About />
@@ -131,6 +164,7 @@ function App() {
       <div id="contact" className="scroll-mt-[calc(env(safe-area-inset-top,0px)+88px)] md:scroll-mt-24">
         <Contact />
       </div>
+      </motion.div>
     </>
   )
 }

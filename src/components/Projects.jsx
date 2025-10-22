@@ -1,6 +1,7 @@
 import './Projects.css';
 import { SiGithub } from 'react-icons/si';
 import { HiExternalLink } from 'react-icons/hi';
+import { motion } from 'motion/react';
 import Project1 from '../assets/Project-1.png';
 import Project2 from '../assets/Project-2.png';
 import Project3 from '../assets/Project-3.png';
@@ -44,13 +45,31 @@ function Projects() {
   return (
     <section className="w-full py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-indigo-400 text-3xl md:text-5xl font-semibold mb-16 text-center underline underline-offset-8">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+          className="text-indigo-400 text-3xl md:text-5xl font-semibold mb-16 text-center underline underline-offset-8"
+        >
           Projects
-        </h2>
+        </motion.h2>
 
-        <div className="projects-grid">
+        <motion.div
+          className="projects-grid"
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.14 } } }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-100px' }}
+        >
           {projects.map((project) => (
-            <div key={project.id} className="project-card">
+            <motion.div
+              key={project.id}
+              className="project-card"
+              variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } }}
+              whileHover={{ y: -6, scale: 1.01 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+            >
               {/* Cover Image */}
               <div className="project-image-container">
                 <img 
@@ -134,9 +153,9 @@ function Projects() {
                   </a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

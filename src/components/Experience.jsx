@@ -1,5 +1,6 @@
 import './Experience.css';
 import { HiExternalLink } from 'react-icons/hi';
+import { motion } from 'motion/react';
 
 const experiences = [
   {
@@ -22,13 +23,27 @@ function Experience() {
   return (
     <section className="w-full py-16 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-indigo-400 text-3xl md:text-5xl font-semibold mb-16 text-center underline underline-offset-8">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true, margin: '-100px' }}
+          className="text-indigo-400 text-3xl md:text-5xl font-semibold mb-16 text-center underline underline-offset-8"
+        >
           Experience
-        </h2>
+        </motion.h2>
 
-        <div className="timeline-container">
+        <motion.div
+          className="timeline-container"
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.14 } } }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-100px' }}
+        >
           {experiences.map((exp, index) => (
-            <div key={exp.id} className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+            <motion.div key={exp.id} className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}
+              variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } }}
+            >
               {/* Timeline dot */}
               <div className="timeline-dot" style={{ backgroundColor: exp.color }}>
                 <div className="timeline-dot-inner"></div>
@@ -36,7 +51,7 @@ function Experience() {
 
               {/* Content card */}
               <div className="timeline-content">
-                <div className="experience-card">
+                <motion.div className="experience-card" whileHover={{ y: -6, scale: 1.01 }} transition={{ type: 'spring', stiffness: 260, damping: 20 }}>
                   {/* Header */}
                   <div className="card-header">
                     <div>
@@ -97,11 +112,11 @@ function Experience() {
                       </a>
                     </div>
                   )}
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
