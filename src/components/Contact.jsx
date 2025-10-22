@@ -113,7 +113,7 @@ function Contact() {
                 <FaInstagram />
               </a>
               <a 
-                href="https://linkedin.com/in/adityanaulakha" 
+                href="https://www.linkedin.com/in/aditya-naulakha" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="social-link"
