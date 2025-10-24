@@ -148,8 +148,7 @@ const HeroSection = ({ ready = true }) => {
                             transition={{ duration: 0.45, ease: 'easeOut' }}
                             className="mt-6 text-center text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto"
                         >
-                            I'm <span className="font-semibold text-white">Aditya Naulakha</span> — a <span className="text-blue-300">Software Developer</span> with a passion for creating AI-driven and IoT-enabled systems. 
-                            I focus on building efficient, data-driven, and human-centered digital experiences.
+                            I'm <span className="font-semibold text-white">Aditya Naulakha</span> — a <span className="text-blue-300">Software Developer</span> who loves crafting AI-powered and full-stack solutions that blend performance, usability, and intelligence into seamless digital experiences.
                         </motion.p>
 
             {/* CTA buttons (show last) */}
