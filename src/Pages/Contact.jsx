@@ -3,6 +3,8 @@ import Hyperspeed from '../components/HyperSpeed';
 import './Contact.css';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { FaGlobe, FaInstagram } from 'react-icons/fa';
+import { HiMail, HiPhone } from 'react-icons/hi';
+import { motion } from 'motion/react';
 
 function Contact() {
   const [isMobile, setIsMobile] = useState(false);
@@ -73,57 +75,115 @@ function Contact() {
 
         {/* Content Overlay */}
         <div className="contact-content">
-          <h2 className="contact-title">Let's Work Together</h2>
-          <p className="contact-subtitle">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            viewport={{ once: true }}
+            className="contact-title"
+          >
+            Let's Work Together
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 }}
+            viewport={{ once: true }}
+            className="contact-subtitle"
+          >
             Have a project in mind? Let's create something amazing together.
-          </p>
-          <a 
+          </motion.p>
+
+          {/* Contact Methods - Mobile Friendly */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.3 }}
+            viewport={{ once: true }}
+            className="contact-methods"
+          >
+            <a 
+              href="mailto:naulakhaaditya4@gmail.com"
+              className="contact-method-card"
+            >
+              <HiMail className="contact-method-icon" />
+              <div className="contact-method-text">
+                <span className="contact-method-label">Email Me</span>
+                <span className="contact-method-value">naulakhaaditya4@gmail.com</span>
+              </div>
+            </a>
+          </motion.div>
+
+          {/* Primary CTA Button */}
+          <motion.a 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
+            viewport={{ once: true }}
             href="mailto:naulakhaaditya4@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
             className="contact-button"
           >
             Let's Get in Touch
-          </a>
-        </div>
+          </motion.a>
 
-        {/* Footer Section */}
-        <footer className="footer-section">
-          <div className="footer-content">
-            <p className="footer-text">
-              Made with <span className="heart">❤️</span> by Aditya
-            </p>
-            <div className="footer-socials">
-              <a 
-                href="https://github.com/adityanaulakha" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label="GitHub"
-              >
-                <SiGithub />
-              </a>
-              <a 
-                href="https://www.instagram.com/adityanaulakha.tech/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label="Instagram"
-              >
-                <FaInstagram />
-              </a>
-              <a 
-                href="https://www.linkedin.com/in/aditya-naulakha" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="social-link"
-                aria-label="LinkedIn"
-              >
-                <SiLinkedin />
-              </a>
+          {/* "CONNECT WITH ME:" Label */}
+          <motion.span 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.5 }}
+            viewport={{ once: true }}
+            className="connect-label"
+          >
+            CONNECT WITH ME:
+          </motion.span>
+
+          {/* Footer Section with Social Links */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
+            viewport={{ once: true }}
+            className="footer-inline"
+          >
+            <div className="footer-inline-content">
+              <div className="footer-socials-row">
+                <a 
+                  href="https://github.com/adityanaulakha" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="footer-social-link"
+                  aria-label="GitHub"
+                >
+                  <SiGithub />
+                </a>
+                <a 
+                  href="https://www.linkedin.com/in/aditya-naulakha" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="footer-social-link"
+                  aria-label="LinkedIn"
+                >
+                  <SiLinkedin />
+                </a>
+                <a 
+                  href="https://www.instagram.com/adityanaulakha.tech/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="footer-social-link"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram />
+                </a>
+              </div>
+              <p className="footer-inline-text">
+                Made with <span className="heart">💗</span> by Aditya
+              </p>
             </div>
-          </div>
-        </footer>
+          </motion.div>
+        </div>
       </section>
     </>
   );

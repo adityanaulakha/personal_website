@@ -1,6 +1,7 @@
 import './Experience.css';
 import { HiExternalLink } from 'react-icons/hi';
 import { motion } from 'motion/react';
+import { HiDocumentText } from 'react-icons/hi';
 
 const experiences = [
   {
@@ -14,7 +15,9 @@ const experiences = [
     skills: ["React.js", "Tailwind CSS", "Git", "UI/UX"],
     color: "#4F58FF",
     // Optional: add a project link relevant to this experience
-    projectLink: "https://divueens-frontend.vercel.app/"
+    projectLink: "https://divueens-frontend.vercel.app/",
+    // Optional: add a certificate link
+    certificateLink: "https://drive.google.com/file/d/1aXhQPyYcucJ-gdLwP3qbSjn8MnOSFAmZ/view?usp=sharing"
   }
 ];
 
@@ -99,7 +102,7 @@ function Experience() {
 
                   {/* Project Link (optional) */}
                   {exp.projectLink && (
-                    <div className="mt-4">
+                    <div className="mt-4 flex flex-wrap gap-3">
                       <a
                         href={exp.projectLink}
                         target="_blank"
@@ -109,6 +112,32 @@ function Experience() {
                       >
                         View Project
                         <HiExternalLink className="w-4 h-4" />
+                      </a>
+                      {exp.certificateLink && (
+                        <a
+                          href={exp.certificateLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-white shadow-sm backdrop-blur-sm transition-all hover:bg-white/20"
+                          aria-label="View certificate"
+                        >
+                          View Certificate
+                          <HiDocumentText className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
+                  )}
+                  {!exp.projectLink && exp.certificateLink && (
+                    <div className="mt-4">
+                      <a
+                        href={exp.certificateLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-white shadow-sm backdrop-blur-sm transition-all hover:bg-white/20"
+                        aria-label="View certificate"
+                      >
+                        View Certificate
+                        <HiDocumentText className="w-4 h-4" />
                       </a>
                     </div>
                   )}
