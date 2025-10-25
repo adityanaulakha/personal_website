@@ -1,4 +1,4 @@
-import TiltedCard from './TiltedCard';
+import TiltedCard from '../components/TiltedCard';
 import Profile from '../assets/Profile.jpg';
 import { motion } from 'motion/react';
 

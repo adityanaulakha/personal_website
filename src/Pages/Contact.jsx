@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Hyperspeed from './HyperSpeed';
+import Hyperspeed from '../components/HyperSpeed';
 import './Contact.css';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { FaGlobe, FaInstagram } from 'react-icons/fa';

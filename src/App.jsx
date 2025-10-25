@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import Navbar from './components/Navbar';
 import MobileNavbar from './components/MobileNavbar';
-import HeroSection from './components/HeroSection';
-import About from './components/About.jsx';
-import Skills from './components/Skills';
-import Experience from './components/Experience';
-import Achievements from './components/Achievements';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
+import HeroSection from './Pages/HeroSection.jsx';
+import About from './Pages/About.jsx';
+import Skills from './Pages/Skills.jsx';
+import Experience from './Pages/Experience.jsx';
+import Achievements from './Pages/Achievements.jsx';
+import Projects from './Pages/Projects.jsx';
+import Contact from './Pages/Contact.jsx';
 import Loader from './components/Loader.jsx';
 
 

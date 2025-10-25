@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import Background from './Background';
+import Background from '../components/Background';
 
 const HeroSection = ({ ready = true }) => {
     const line1 = 'Designing Intelligent Systems,';
