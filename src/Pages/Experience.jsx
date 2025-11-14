@@ -9,15 +9,28 @@ const experiences = [
     role: "Front-end Developer Intern",
     company: "Baoiam Innovations Pvt. Ltd",
     type: "Internship",
-    duration: "Jun 2024 - Aug 2024",
+    duration: "1 Jun, 2024 - 1 Aug, 2024",
     location: "Remote",
     description: "Developed a responsive cosmetics e-commerce platform using React.js and Tailwind CSS for mobile and desktop users across multiple browsers. Collaborated with cross-functional teams, delivering iterative releases and resolving 20+ UI/UX issues. Managed version control and collaborative debugging via Git.",
-    skills: ["React.js", "Tailwind CSS", "Git", "UI/UX"],
+    skills: ["React.js", "Tailwind CSS", "GitHub", "Git", "UI/UX", "Vercel"],
     color: "#4F58FF",
     // Optional: add a project link relevant to this experience
     projectLink: "https://divueens-frontend.vercel.app/",
     // Optional: add a certificate link
     certificateLink: "https://drive.google.com/file/d/1aXhQPyYcucJ-gdLwP3qbSjn8MnOSFAmZ/view?usp=sharing"
+  },
+  {
+    id: 2,
+    role: "Full-Stack Developer Intern",
+    company: "YRIT SOLUTIONS",
+    type: "Internship",
+    duration: "1 Sep, 2025 - 31 Oct, 2025",
+    location: "Remote",
+    description: "Actively contributed to full‑stack web development alongside front‑end delivery, collaborated on application security testing, and supported secure database practices and data protection measures—demonstrating strong programming skills, cybersecurity knowledge, and a professional approach to all assigned responsibilities.",
+    skills: ["React.js", "Node.js", "Tailwind CSS", "GitHub", "Vercel", "Express", "MongoDB", "Application Security", "Data Protection"],
+    color: "#22C55E",
+    // Optional: add a certificate link
+    certificateLink: "https://drive.google.com/file/d/1VT0lYHeoGdYTyI7WwYpGZYWRR3ibkJcT/view?usp=sharing"
   }
 ];
 
