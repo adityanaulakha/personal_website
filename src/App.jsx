@@ -132,8 +132,8 @@ function App() {
           { label: 'Home', href: '#home' },
           { label: 'About', href: '#about' },
           { label: 'Skills', href: '#skills' },
-          { label: 'Experience', href: '#experience' },
-          { label: 'Achievements', href: '#achievements' },
+          { label: 'Exp.', href: '#experience' },
+          { label: 'Achieve.', href: '#achievements' },
           { label: 'Projects', href: '#projects' },
           { label: 'Contact', href: '#contact' }
         ]}

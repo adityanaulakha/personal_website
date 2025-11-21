@@ -7,15 +7,15 @@ const MobileNavbar = ({ items = [], className = '' }) => {
   const scrollTimeoutRef = useRef(null);
   const lastManualClickRef = useRef(null);
 
-  // Icon mapping for each section
-  const iconMap = {
-    'Home': HiHome,
-    'About': HiUser,
-    'Skills': HiLightningBolt,
-    'Experience': HiBriefcase,
-    'Achievements': HiBadgeCheck,
-    'Projects': HiFolder,
-    'Contact': HiMail
+  // Icon mapping for each section (by href)
+  const iconMapByHref = {
+    '#home': HiHome,
+    '#about': HiUser,
+    '#skills': HiLightningBolt,
+    '#experience': HiBriefcase,
+    '#achievements': HiBadgeCheck,
+    '#projects': HiFolder,
+    '#contact': HiMail
   };
 
   // Track active section based on scroll - with debouncing
@@ -121,7 +121,7 @@ const MobileNavbar = ({ items = [], className = '' }) => {
       >
         <ul className="flex items-center justify-between gap-1 rounded-[28px] border border-white/20 bg-black/50 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)] p-2">
           {items.map((item) => {
-            const Icon = iconMap[item.label] || HiHome;
+            const Icon = iconMapByHref[item.href] || HiHome;
             const isActive = activeHref === item.href;
             
             return (
