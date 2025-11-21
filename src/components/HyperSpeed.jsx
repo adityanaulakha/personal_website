@@ -1103,14 +1103,56 @@ const Hyperspeed = ({
       return needResize;
     }
 
-    (function () {
+    // Safe deferred initialization: wait until container has non-zero dimensions.
+    (function initWhenReady(attempt = 0) {
       const container = document.getElementById('lights');
+      if (!container) return; // Nothing to do yet
+
+      const width = container.offsetWidth;
+      const height = container.offsetHeight;
+
+      // If zero sized, attempt a fallback height and retry a few frames.
+      if ((width === 0 || height === 0) && attempt < 30) {
+        if (!container.style.minHeight) {
+          // Provide a temporary minimum height so layout can settle.
+          container.style.minHeight = '240px';
+        }
+        requestAnimationFrame(() => initWhenReady(attempt + 1));
+        return;
+      }
+
+      // Final guard: if still zero, use viewport size to avoid zero-size FBOs.
+      const safeWidth = width === 0 ? window.innerWidth || 800 : width;
+      const safeHeight = height === 0 ? window.innerHeight || 600 : height;
+
+      // Apply fallback dimensions directly to container so subsequent resizes work.
+      if (width === 0 || height === 0) {
+        container.style.width = safeWidth + 'px';
+        container.style.height = safeHeight + 'px';
+      }
+
       const options = { ...effectOptions };
       options.distortion = distortions[options.distortion];
 
       const myApp = new App(container, options);
       appRef.current = myApp;
       myApp.loadAssets().then(myApp.init);
+
+      // Observe future size changes (ResizeObserver handles dynamic layout shifts).
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver(entries => {
+          for (const entry of entries) {
+            const cr = entry.contentRect;
+            if (cr.width > 0 && cr.height > 0 && appRef.current && appRef.current.renderer) {
+              appRef.current.renderer.setSize(cr.width, cr.height, false);
+              appRef.current.camera.aspect = cr.width / cr.height;
+              appRef.current.camera.updateProjectionMatrix();
+              appRef.current.composer.setSize(cr.width, cr.height);
+            }
+          }
+        });
+        ro.observe(container);
+      }
     })();
 
     return () => {
