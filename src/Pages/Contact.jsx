@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import Hyperspeed from '../components/HyperSpeed';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
+const LazyHyperspeed = lazy(() => import('../components/HyperSpeed'));
 import './Contact.css';
 import { SiGithub, SiLinkedin } from 'react-icons/si';
 import { FaGlobe, FaInstagram } from 'react-icons/fa';
@@ -8,6 +8,8 @@ import { motion } from 'motion/react';
 
 function Contact() {
   const [isMobile, setIsMobile] = useState(false);
+  const [showHyper, setShowHyper] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -20,13 +22,35 @@ function Contact() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Mount hyperspeed only when section comes into view on desktop
+  useEffect(() => {
+    if (isMobile) return;
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setShowHyper(true);
+            io.disconnect();
+            break;
+          }
+        }
+      },
+      { root: null, threshold: 0.25 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [isMobile]);
+
   return (
     <>
-      <section className="contact-section">
+      <section ref={sectionRef} className="contact-section">
         {/* Hyperspeed Background - disabled on mobile/tablet */}
-        {!isMobile && (
+        {!isMobile && showHyper && (
           <div className="hyperspeed-background">
-            <Hyperspeed
+            <Suspense fallback={null}>
+            <LazyHyperspeed
               effectOptions={{
                 onSpeedUp: () => { },
                 onSlowDown: () => { },
@@ -65,6 +89,7 @@ function Contact() {
                 }
               }}
             />
+            </Suspense>
           </div>
         )}
 

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { motion } from 'motion/react';
-import Background from '../components/Background';
+const LazyBackground = lazy(() => import('../components/Background'));
 
 const HeroSection = ({ ready = true }) => {
     const line1 = 'Designing Intelligent Systems,';
@@ -79,6 +79,18 @@ const HeroSection = ({ ready = true }) => {
         };
     }, [ready]);
 
+    // Mount background after first paint/idle so it doesn't block LCP
+    const [mountBg, setMountBg] = useState(false);
+    useEffect(() => {
+        const start = () => setMountBg(true);
+        if ('requestIdleCallback' in window) {
+            // @ts-ignore
+            requestIdleCallback(start, { timeout: 800 });
+        } else {
+            setTimeout(start, 0);
+        }
+    }, []);
+
     // After typing finishes (phase===3), cascade badges then CTAs
     useEffect(() => {
         if (phase !== 3) return;
@@ -90,19 +102,23 @@ const HeroSection = ({ ready = true }) => {
         };
     }, [phase]);
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+        <section className="relative w-full h-screen overflow-hidden">
       {/* Particles background */}
       <div className="absolute inset-0">
-                <Background
-                    particleColors={["#4F58FF", "#4F58FF"]}
-                    particleCount={220}
-                    particleSpread={10}
-                    speed={0.05}
-                    particleBaseSize={80}
-                    moveParticlesOnHover={false}
-                    alphaParticles={false}
-                    disableRotation={false}
-                />
+                                {mountBg && (
+                                    <Suspense fallback={null}>
+                                        <LazyBackground
+                                                particleColors={["#4F58FF", "#4F58FF"]}
+                                                particleCount={220}
+                                                particleSpread={10}
+                                                speed={0.05}
+                                                particleBaseSize={80}
+                                                moveParticlesOnHover={false}
+                                                alphaParticles={false}
+                                                disableRotation={false}
+                                        />
+                                    </Suspense>
+                                )}
       </div>
 
       {/* Content overlay */}
@@ -127,7 +143,7 @@ const HeroSection = ({ ready = true }) => {
             </motion.div>
 
                 {/* Main headline with typing effect */}
-                <h1 className="text-center font-bold leading-tight text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl whitespace-normal sm:whitespace-nowrap">
+                <h1 className="text-center font-bold leading-tight text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl whitespace-normal sm:whitespace-nowrap min-h-[4.5rem] sm:min-h-[5.5rem] md:min-h-[6.5rem] lg:min-h-[8rem]">
                     <span>{typed1}</span>
                     {phase === 1 && (
                         <span className="ml-1 inline-block align-baseline w-[1ch] border-l-2 border-blue-300 animate-pulse" aria-hidden="true" />
