@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import MobileNavbar from './components/MobileNavbar';
 import HeroSection from './Pages/HeroSection.jsx';
@@ -106,6 +107,7 @@ function App() {
     <>
       {/* Full-screen loader overlay; site renders behind it */}
       <Loader visible={showLoader} message="Preparing experience…" />
+      <Analytics />
       <motion.div
         variants={contentVariants}
         initial="hidden"
