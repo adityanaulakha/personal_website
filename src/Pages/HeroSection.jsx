@@ -175,7 +175,7 @@ const HeroSection = ({ ready = true }) => {
                             className="mt-10 flex flex-wrap justify-center gap-4"
                         >
                             <a
-                                href="https://drive.google.com/file/d/1M_GoMjF8TzelUo84CDaEdWHuc5UrYjpE/view?usp=sharing"
+                                href="https://drive.google.com/file/d/19XFsWjGA6E_nLbOF8ZC_uhSK7M-LEBFK/view?usp=sharing"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 rounded-full px-7 py-3 text-white shadow-sm backdrop-blur-sm transition-all
