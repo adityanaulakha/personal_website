@@ -167,7 +167,7 @@ const HeroSection = ({ ready = true }) => {
                             I'm <span className="font-semibold text-white">Aditya Naulakha</span> — a <span className="text-blue-300">Software Developer</span> who loves crafting <span className="text-blue-300">AI-powered & full-stack solutions</span> that blend performance, usability, and intelligence into seamless digital experiences.
                         </motion.p>
 
-            {/* CTA buttons (show last) */}
+                        {/* CTA buttons */}
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
                             animate={showCTAs ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
