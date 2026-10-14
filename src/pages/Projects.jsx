@@ -1,27 +1,25 @@
-import { Page, Block, Reveal } from '../components/PageTransition';
-import { PageHeader } from '../components/Section';
-import ProjectRow from '../components/ProjectRow';
+import { ProjectItem } from '../components/ContentRows';
+import Reveal from '../components/Reveal';
 import { projects } from '../data/projects';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 
 export default function Projects() {
   useDocumentTitle('Projects');
   return (
-    <Page>
-      <PageHeader
-        eyebrow="02 / Projects"
-        title="Projects"
-        description="Academic systems, document version control, and a live hackathon leaderboard."
-      />
-      <div className="mt-12 space-y-10">
-        {projects.map((p) => (
-          <Reveal key={p.id} amount={0.1}>
-            <Block>
-              <ProjectRow project={p} detailed />
-            </Block>
+    <div className="space-y-10">
+      <header className="space-y-2">
+        <h1 className="text-2xl font-bold text-foreground">Projects</h1>
+        <p className="text-xs text-soft md:text-base">
+          Academic systems, document version control, and a live hackathon leaderboard.
+        </p>
+      </header>
+      <div className="flex flex-col gap-10">
+        {projects.map((project) => (
+          <Reveal key={project.id}>
+            <ProjectItem project={project} detailed />
           </Reveal>
         ))}
       </div>
-    </Page>
+    </div>
   );
 }

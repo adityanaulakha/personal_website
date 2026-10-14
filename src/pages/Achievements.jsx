@@ -1,46 +1,42 @@
-import { Page, Block, Reveal } from '../components/PageTransition';
-import { PageHeader } from '../components/Section';
-import AchievementRow from '../components/AchievementRow';
+import { AchievementItem } from '../components/ContentRows';
+import Reveal from '../components/Reveal';
 import { achievements, certifications } from '../data/achievements';
 import useDocumentTitle from '../hooks/useDocumentTitle';
 
 export default function Achievements() {
   useDocumentTitle('Achievements');
   return (
-    <Page>
-      <PageHeader
-        eyebrow="03 / Achievements"
-        title="Achievements"
-        description="Leadership, competitions, and the certifications behind the work."
-      />
-      <div className="mt-12 space-y-8">
-        {achievements.map((a) => (
-          <Reveal key={a.id} amount={0.2}>
-            <Block>
-              <AchievementRow item={a} detailed />
-            </Block>
+    <div className="space-y-10">
+      <header className="space-y-2">
+        <h1 className="text-2xl font-bold text-foreground">Achievements</h1>
+        <p className="text-xs text-soft md:text-base">
+          Leadership, competitions, and the certifications behind the work.
+        </p>
+      </header>
+      <div className="flex flex-col gap-8">
+        {achievements.map((item) => (
+          <Reveal key={item.id}>
+            <AchievementItem item={item} detailed />
           </Reveal>
         ))}
       </div>
-      <div className="mt-16">
-        <Block>
-          <h2 className="text-xl font-bold leading-7 text-fg">Certifications</h2>
-        </Block>
-        <div className="mt-6 space-y-8">
-          {certifications.map((group) => (
-            <Reveal key={group.id} amount={0.2}>
-              <Block>
-                <p className="text-sm font-semibold leading-5 text-fg">{group.group}</p>
-                <ul className="mt-2 space-y-1.5 text-sm font-normal leading-5 text-fg-muted">
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </Block>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </Page>
+      <section aria-labelledby="certifications-heading" className="space-y-6">
+        <h2 id="certifications-heading" className="text-2xl font-bold text-foreground">
+          Certifications
+        </h2>
+        {certifications.map((group) => (
+          <Reveal key={group.id}>
+            <div>
+              <h3 className="text-sm font-semibold text-foreground">{group.group}</h3>
+              <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
+                {group.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        ))}
+      </section>
+    </div>
   );
 }
