@@ -1,7 +1,7 @@
-export const SITE = 'https://adityanaulakha.tech';
+export const SITE = 'https://iadityanaulakha.tech';
 
 export const DEFAULT_DESCRIPTION =
-  'Aditya Naulakha builds full-stack web apps, real-time systems, PWAs, and AI-powered tools. RemindrX and LeadX are live.';
+  'Aditya Naulakha builds full-stack web apps, real-time systems, and AI-powered tools.';
 
 export const routes = [
   {

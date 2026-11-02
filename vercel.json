@@ -4,8 +4,8 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.adityanaulakha.tech" }],
-      "destination": "https://adityanaulakha.tech/$1",
+      "has": [{ "type": "host", "value": "www.iadityanaulakha.tech" }],
+      "destination": "https://iadityanaulakha.tech/$1",
       "permanent": true
     }
   ],

@@ -2,7 +2,7 @@
 
 A typography-led, editorial personal site. Light by default with a dark toggle, a narrow single column, and no WebGL. Built with React 19, Vite 7, Tailwind CSS 4, and `motion`.
 
-Live at [adityanaulakha.tech](https://www.adityanaulakha.tech).
+Live at [iadityanaulakha.tech](https://iadityanaulakha.tech).
 
 ## Pages
 

@@ -20,8 +20,8 @@ export const profile = {
     coursework: 'DSA in Java, OOP, DBMS, Computer Networks, System Design',
   },
   resumeUrl: 'https://drive.google.com/file/d/1ObOoLtLz9q0t4YnH6soLNU3oa5HgMuKX/view?usp=sharing',
-  siteUrl: 'https://adityanaulakha.tech',
-  bio: 'I build full-stack web apps, real-time systems, PWAs, and AI-powered tools. RemindrX and LeadX are live.',
+  siteUrl: 'https://iadityanaulakha.tech',
+  bio: 'I build full-stack web apps, real-time systems, and AI-powered tools.',
   socials: [
     { label: 'X', href: 'https://x.com/iadityanaulakha', Icon: TbBrandX },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/aditya-naulakha', Icon: TbBrandLinkedin },
