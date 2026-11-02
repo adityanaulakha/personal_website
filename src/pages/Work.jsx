@@ -1,4 +1,4 @@
-import { Page, Block, Reveal } from '../components/PageTransition';
+import { Page, Block } from '../components/PageTransition';
 import { PageHeader } from '../components/Section';
 import ExperienceRow from '../components/ExperienceRow';
 import { experience } from '../data/experience';
@@ -13,13 +13,11 @@ export default function Work() {
         title="Experience"
         description="An upcoming internship at EPAM Systems, plus the roles I have already shipped."
       />
-      <div className="mt-12 space-y-10">
+      <div className="mt-8">
         {experience.map((exp) => (
-          <Reveal key={exp.id} amount={0.1}>
-            <Block>
-              <ExperienceRow exp={exp} detailed />
-            </Block>
-          </Reveal>
+          <Block key={exp.id}>
+            <ExperienceRow exp={exp} />
+          </Block>
         ))}
       </div>
     </Page>

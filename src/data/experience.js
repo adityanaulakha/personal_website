@@ -6,6 +6,20 @@ import {
   SiNodedotjs,
 } from 'react-icons/si';
 
+/** @returns {'working' | 'upcoming' | null} */
+export function experienceStatus(exp) {
+  if (exp.status === 'working' || exp.status === 'upcoming') return exp.status;
+  if (exp.current) return 'working';
+  if (exp.upcoming) return 'upcoming';
+  return null;
+}
+
+export function experienceRange(exp) {
+  if (exp.start && exp.end) return `${exp.start} – ${exp.end}`;
+  if (exp.current && exp.start) return `${exp.start} – Present`;
+  return exp.start || exp.end || '';
+}
+
 export const experience = [
   {
     id: 'epam',
@@ -18,6 +32,7 @@ export const experience = [
     location: '',
     current: false,
     upcoming: true,
+    status: 'upcoming',
     tech: [],
     bullets: [],
     links: [],
@@ -33,10 +48,10 @@ export const experience = [
     location: 'Remote',
     current: false,
     tech: [
-      { name: 'React', Icon: SiReact },
-      { name: 'Node.js', Icon: SiNodedotjs },
-      { name: 'Tailwind CSS', Icon: SiTailwindcss },
-      { name: 'Git', Icon: SiGit },
+      { name: 'React', Icon: SiReact, color: '#61DAFB' },
+      { name: 'Node.js', Icon: SiNodedotjs, color: '#339933' },
+      { name: 'Tailwind CSS', Icon: SiTailwindcss, color: '#06B6D4' },
+      { name: 'Git', Icon: SiGit, color: '#F05032' },
       { name: 'GitHub', Icon: SiGithub },
     ],
     bullets: [
@@ -62,10 +77,10 @@ export const experience = [
     location: 'Remote',
     current: false,
     tech: [
-      { name: 'React', Icon: SiReact },
-      { name: 'Tailwind CSS', Icon: SiTailwindcss },
-      { name: 'REST APIs', Icon: SiNodedotjs },
-      { name: 'Git', Icon: SiGit },
+      { name: 'React', Icon: SiReact, color: '#61DAFB' },
+      { name: 'Tailwind CSS', Icon: SiTailwindcss, color: '#06B6D4' },
+      { name: 'REST APIs', Icon: SiNodedotjs, color: '#339933' },
+      { name: 'Git', Icon: SiGit, color: '#F05032' },
       { name: 'GitHub', Icon: SiGithub },
     ],
     bullets: [
