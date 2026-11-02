@@ -21,7 +21,7 @@ export const profile = {
   },
   resumeUrl: 'https://drive.google.com/file/d/1ObOoLtLz9q0t4YnH6soLNU3oa5HgMuKX/view?usp=sharing',
   siteUrl: 'https://www.adityanaulakha.tech',
-  bio: 'Computer Science undergraduate at GLA University, Mathura (B.Tech CSE, 2023–2027, CGPA 7.97), and President of the Droid Club. I build full-stack products and real-time systems — from offline-first academic apps to collaborative editors.',
+  bio: 'I build full-stack web apps, real-time systems, PWAs, and AI-powered tools. RemindrX and LeadX are live.',
   socials: [
     { label: 'X', href: 'https://x.com/iadityanaulakha', Icon: TbBrandX },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/aditya-naulakha', Icon: TbBrandLinkedin },
