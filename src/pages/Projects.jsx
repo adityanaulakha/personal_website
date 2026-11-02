@@ -2,10 +2,8 @@ import { Page, Block, Reveal } from '../components/PageTransition';
 import { PageHeader } from '../components/Section';
 import ProjectRow from '../components/ProjectRow';
 import { projects } from '../data/projects';
-import useDocumentTitle from '../hooks/useDocumentTitle';
 
 export default function Projects() {
-  useDocumentTitle('Projects');
   return (
     <Page>
       <PageHeader

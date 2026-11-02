@@ -2,10 +2,8 @@ import { Page, Block } from '../components/PageTransition';
 import { PageHeader } from '../components/Section';
 import ExperienceRow from '../components/ExperienceRow';
 import { experience } from '../data/experience';
-import useDocumentTitle from '../hooks/useDocumentTitle';
 
 export default function Work() {
-  useDocumentTitle('Work');
   return (
     <Page>
       <PageHeader

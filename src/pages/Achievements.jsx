@@ -2,10 +2,8 @@ import { Page, Block, Reveal } from '../components/PageTransition';
 import { PageHeader } from '../components/Section';
 import AchievementRow from '../components/AchievementRow';
 import { achievements, certifications } from '../data/achievements';
-import useDocumentTitle from '../hooks/useDocumentTitle';
 
 export default function Achievements() {
-  useDocumentTitle('Achievements');
   return (
     <Page>
       <PageHeader
