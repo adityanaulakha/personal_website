@@ -1,10 +1,13 @@
 import {
   SiAmazonwebservices,
   SiDocker,
+  SiCss3,
   SiExpress,
+  SiFigma,
   SiFirebase,
   SiGit,
   SiGithubactions,
+  SiHtml5,
   SiJavascript,
   SiMongodb,
   SiNextdotjs,
@@ -38,6 +41,9 @@ const firestore = { Icon: FirestoreIcon };
 const techByName = {
   Java: { Icon: JavaIcon },
   JavaScript: { Icon: SiJavascript, color: '#F7DF1E' },
+  HTML: { Icon: SiHtml5, color: '#E34F26' },
+  CSS: { Icon: SiCss3, color: '#1572B6' },
+  Figma: { Icon: SiFigma, color: '#F24E1E' },
   TypeScript: { Icon: SiTypescript, color: '#3178C6' },
   Python: { Icon: SiPython, color: '#3776AB' },
   'Node.js': { Icon: SiNodedotjs, color: '#339933' },
