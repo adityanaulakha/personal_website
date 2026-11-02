@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 const STORAGE_KEY = 'theme';
-const THEME_COLOR = { dark: '#0e0e0d', light: '#faf9f6' };
+const THEME_COLOR = { dark: '#100f0f', light: '#f5f5f5' };
 
 function readInitialTheme() {
   if (typeof document === 'undefined') return 'dark';

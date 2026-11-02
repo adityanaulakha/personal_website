@@ -36,7 +36,7 @@ function ExperiencePreview() {
       <Block className="mt-4 flex justify-center">
         <Link
           to="/work"
-          className="inline-block rounded-lg border border-line-strong px-4 py-2 text-sm text-fg-muted transition-colors duration-200 hover:border-fg/30 hover:text-fg"
+          className="inline-block rounded-lg border border-line-strong px-4 py-2 text-sm font-medium text-fg-muted transition-colors duration-200 hover:border-fg/30 hover:text-fg"
         >
           Show all work experiences
         </Link>
@@ -64,12 +64,12 @@ export default function Home() {
         />
         <div className="min-w-0">
           <h1
-            className="text-lg font-bold leading-7 text-fg sm:text-2xl sm:leading-8"
+            className="text-2xl font-bold leading-tight text-fg"
             aria-label={profile.name}
           >
             <TextReveal text={profile.name} delay={0.12} />
           </h1>
-          <p className="mt-0.5 flex flex-wrap items-center gap-x-2 text-base font-normal leading-6 text-fg-muted">
+          <p className="mt-0.5 flex flex-wrap items-center gap-x-2 text-sm font-normal leading-5 text-fg-muted">
             <span>{profile.role}</span>
             <span aria-hidden="true">·</span>
             <span>{profile.tagline}</span>
@@ -149,7 +149,7 @@ export default function Home() {
         <div className="space-y-6">
           {skillGroups.map((group) => (
             <div key={group.id}>
-              <h3 className="text-sm font-semibold leading-5 text-fg">{group.label}</h3>
+              <h3 className="text-base font-semibold leading-tight text-fg">{group.label}</h3>
               <div className="mt-3 flex flex-wrap gap-2">
                 {group.items.map((item) => {
                   const tech = resolveTech(item);
@@ -173,7 +173,7 @@ export default function Home() {
               className="group flex items-start justify-between gap-4 p-5"
             >
               <div>
-                <p className="text-sm font-semibold leading-5 text-fg">Resume</p>
+                <p className="text-base font-semibold leading-tight text-fg">Resume</p>
                 <p className="mt-1 text-sm text-fg-muted">One page, kept current.</p>
               </div>
               <HiOutlineArrowUpRight
@@ -189,7 +189,7 @@ export default function Home() {
               className="group flex items-start justify-between gap-4 p-5"
             >
               <div>
-                <p className="text-sm font-semibold leading-5 text-fg">Say hello</p>
+                <p className="text-base font-semibold leading-tight text-fg">Say hello</p>
                 <p className="mt-1 text-sm text-fg-muted">{profile.email}</p>
               </div>
               <HiOutlineArrowUpRight

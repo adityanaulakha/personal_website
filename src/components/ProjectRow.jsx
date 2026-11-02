@@ -32,7 +32,7 @@ function ProjectTech({ project }) {
 
 function Metric({ project }) {
   return (
-    <div className="shrink-0 text-right text-sm font-normal leading-5 text-fg-subtle transition-colors duration-200 group-hover:text-fg-muted">
+    <div className="shrink-0 text-right font-mono text-xs font-medium leading-5 text-fg-subtle transition-colors duration-200 group-hover:text-fg-muted">
       <p className="tabular-nums text-fg">{project.metric}</p>
       {project.metricLabel ? <p>{project.metricLabel}</p> : null}
     </div>
@@ -73,7 +73,7 @@ export default function ProjectRow({ project, detailed = false }) {
       >
         <article className="flex items-start justify-between gap-6">
           <div className="min-w-0">
-            <h3 className="inline-flex items-center gap-1.5 text-lg font-bold leading-7 text-fg">
+            <h3 className="inline-flex items-center gap-1.5 text-lg font-semibold leading-tight text-fg">
               {project.title}
               {linked && (
                 <HiOutlineArrowUpRight
@@ -147,7 +147,7 @@ export default function ProjectRow({ project, detailed = false }) {
       )}
       <div className="min-w-0">
         <div className="flex items-start justify-between gap-6">
-          <h3 className="text-lg font-bold leading-7 text-fg">{project.title}</h3>
+          <h3 className="text-lg font-semibold leading-tight text-fg">{project.title}</h3>
           <Metric project={project} />
         </div>
         <p className="mt-2 text-sm font-normal leading-5 text-fg-muted">{project.description}</p>
