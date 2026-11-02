@@ -1,16 +1,40 @@
 import { useCallback, useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useReducedMotion } from 'motion/react';
 import { HiOutlineArrowUpRight } from 'react-icons/hi2';
-import TechChip from './TechChip';
+import TechTile from './TechTile';
 import ExternalLink from './ExternalLink';
+import { resolveTech } from '../data/tech';
 import TiltCard from './TiltCard';
 import { EASE } from '../lib/motion';
+
+function ProjectTech({ project }) {
+  if (!project.tech?.length) return null;
+  return (
+    <div className="flex flex-wrap gap-2">
+      {project.tech.map((name, i) => {
+        const tech = resolveTech(name);
+        return (
+          <motion.span
+            key={name}
+            initial={{ opacity: 0, y: 6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.35, delay: i * 0.04, ease: EASE }}
+            className="inline-flex"
+          >
+            <TechTile name={tech.name} Icon={tech.Icon} color={tech.color} />
+          </motion.span>
+        );
+      })}
+    </div>
+  );
+}
 
 function Metric({ project }) {
   return (
     <div className="shrink-0 text-right text-sm font-normal leading-5 text-fg-subtle transition-colors duration-200 group-hover:text-fg-muted">
       <p className="tabular-nums text-fg">{project.metric}</p>
-      <p>{project.metricLabel}</p>
+      {project.metricLabel ? <p>{project.metricLabel}</p> : null}
     </div>
   );
 }
@@ -36,6 +60,7 @@ export default function ProjectRow({ project, detailed = false }) {
     const linked = Boolean(project.live);
     const Row = linked ? 'a' : 'div';
     return (
+      <div>
       <Row
         href={linked ? project.live : undefined}
         target={linked ? '_blank' : undefined}
@@ -78,6 +103,10 @@ export default function ProjectRow({ project, detailed = false }) {
           )}
         </AnimatePresence>
       </Row>
+      <div className="mt-1.5">
+        <ProjectTech project={project} />
+      </div>
+      </div>
     );
   }
 
@@ -132,19 +161,8 @@ export default function ProjectRow({ project, detailed = false }) {
             ))}
           </ul>
         )}
-        <div className="mt-4 flex flex-wrap gap-2">
-          {project.tech.map((t, i) => (
-            <motion.span
-              key={t}
-              initial={{ opacity: 0, y: 6 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: i * 0.04, ease: EASE }}
-              className="inline-flex"
-            >
-              <TechChip name={t} />
-            </motion.span>
-          ))}
+        <div className="mt-4">
+          <ProjectTech project={project} />
         </div>
         {(project.github || project.live) && (
         <div className="mt-4 flex flex-wrap gap-5">

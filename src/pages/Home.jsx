@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
 import { HiOutlineArrowUpRight } from 'react-icons/hi2';
 import { Page, Block } from '../components/PageTransition';
@@ -6,24 +6,23 @@ import Section from '../components/Section';
 import ExperienceRow from '../components/ExperienceRow';
 import ProjectRow from '../components/ProjectRow';
 import AchievementRow from '../components/AchievementRow';
-import TechChip from '../components/TechChip';
+import TechTile from '../components/TechTile';
 import SpotlightCard from '../components/SpotlightCard';
-import Magnetic from '../components/Magnetic';
 import TextReveal from '../components/TextReveal';
+import CopyEmail from '../components/CopyEmail';
 import { profile } from '../data/profile';
 import { experience } from '../data/experience';
 import { projects } from '../data/projects';
 import { achievements } from '../data/achievements';
-import { stack } from '../data/stack';
+import { skillGroups } from '../data/stack';
+import { resolveTech } from '../data/tech';
 import avatar from '../assets/profile-avatar.jpg';
 
 const spring = { type: 'spring', stiffness: 300, damping: 18 };
-const VISIBLE_EXPERIENCES = 2;
+const VISIBLE_EXPERIENCES = 3;
 
 function ExperiencePreview() {
-  const [showAll, setShowAll] = useState(false);
-  const hasMore = experience.length > VISIBLE_EXPERIENCES;
-  const visible = showAll || !hasMore ? experience : experience.slice(0, VISIBLE_EXPERIENCES);
+  const visible = experience.slice(0, VISIBLE_EXPERIENCES);
 
   return (
     <>
@@ -34,17 +33,14 @@ function ExperiencePreview() {
           </Block>
         ))}
       </div>
-      {hasMore && !showAll ? (
-        <Block className="mt-4 flex justify-center">
-          <button
-            type="button"
-            onClick={() => setShowAll(true)}
-            className="rounded-lg border border-line-strong px-4 py-2 text-sm text-fg-muted transition-colors duration-200 hover:border-fg/30 hover:text-fg"
-          >
-            Show all work experiences
-          </button>
-        </Block>
-      ) : null}
+      <Block className="mt-4 flex justify-center">
+        <Link
+          to="/work"
+          className="inline-block rounded-lg border border-line-strong px-4 py-2 text-sm text-fg-muted transition-colors duration-200 hover:border-fg/30 hover:text-fg"
+        >
+          Show all work experiences
+        </Link>
+      </Block>
     </>
   );
 }
@@ -84,6 +80,7 @@ export default function Home() {
             >
               {profile.taglineEmail}
             </a>
+            <CopyEmail email={profile.taglineEmail} />
           </p>
         </div>
       </Block>
@@ -92,47 +89,32 @@ export default function Home() {
         {profile.bio}
       </Block>
 
-      <Block className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
-        {profile.socials
-          .filter((s) => ['GitHub', 'TUF', 'LinkedIn'].includes(s.label))
-          .map((s) => (
-            <Magnetic key={s.label} strength={0.35}>
-              <motion.a
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={reduce ? undefined : { y: -2 }}
-                whileTap={reduce ? undefined : { scale: 0.98 }}
-                transition={{ type: 'spring', stiffness: 420, damping: 22 }}
-                className="inline-flex items-center gap-1.5 text-sm font-medium leading-5 text-fg-muted transition-colors duration-200 hover:text-fg"
-              >
-                <s.Icon className="h-4 w-4" aria-hidden="true" />
-                {s.label}
-              </motion.a>
-            </Magnetic>
-          ))}
-      </Block>
-
-      {/* Currently */}
-      <Block className="mt-10">
-        <SpotlightCard className="p-5" lift={false}>
-          <p className="text-sm font-semibold leading-5 text-fg">Currently</p>
-          <ul className="mt-3 space-y-3">
-            {profile.currently.map((c) => (
-              <li key={c.label} className="grid gap-0.5 sm:grid-cols-[11.5rem_1fr] sm:items-baseline sm:gap-x-6">
-                <p className="flex items-center gap-2 text-sm font-semibold leading-5 text-fg">
-                  {c.live && (
-                    <span className="live-dot h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-                  )}
-                  {c.label}
-                </p>
-                <p className="text-sm leading-5 text-fg-muted">
-                  {c.detail}
-                </p>
+      <Block className="mt-5">
+        <ul className="flex items-center gap-4">
+          {profile.socials.map((s) => {
+            const external = s.href.startsWith('http');
+            return (
+              <li key={s.label}>
+                <a
+                  href={s.href}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                  aria-label={s.label}
+                  title={s.label}
+                  className="group relative inline-flex text-fg-subtle transition-colors duration-200 hover:text-fg focus-visible:text-fg"
+                >
+                  <s.Icon className="h-[18px] w-[18px]" aria-hidden="true" />
+                  <span
+                    role="tooltip"
+                    className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-1.5 -translate-x-1/2 whitespace-nowrap text-xs text-fg opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+                  >
+                    {s.label}
+                  </span>
+                </a>
               </li>
-            ))}
-          </ul>
-        </SpotlightCard>
+            );
+          })}
+        </ul>
       </Block>
 
       {/* Experience */}
@@ -162,11 +144,19 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Stack */}
-      <Section index="04" title="Stack">
-        <div className="flex flex-wrap gap-2">
-          {stack.map((item) => (
-            <TechChip key={item} name={item} />
+      {/* Skills */}
+      <Section index="04" title="Skills">
+        <div className="space-y-6">
+          {skillGroups.map((group) => (
+            <div key={group.id}>
+              <h3 className="text-sm font-semibold leading-5 text-fg">{group.label}</h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {group.items.map((item) => {
+                  const tech = resolveTech(item);
+                  return <TechTile key={item} name={tech.name} Icon={tech.Icon} color={tech.color} />;
+                })}
+              </div>
+            </div>
           ))}
         </div>
       </Section>

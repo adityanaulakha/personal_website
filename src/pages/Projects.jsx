@@ -11,7 +11,7 @@ export default function Projects() {
       <PageHeader
         eyebrow="02 / Projects"
         title="Projects"
-        description="Academic systems, document version control, and a live hackathon leaderboard."
+        description="An academic PWA, a live hackathon leaderboard, and a collaborative editor with Git-style history."
       />
       <div className="mt-12 space-y-10">
         {projects.map((p) => (

@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { HiOutlineClipboard, HiOutlineCheck } from 'react-icons/hi2';
-import Magnetic from './Magnetic';
+import { HiOutlineCheck, HiOutlineSquare2Stack } from 'react-icons/hi2';
 
 export default function CopyEmail({ email }) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    if (!copied) return;
-    const t = setTimeout(() => setCopied(false), 1800);
-    return () => clearTimeout(t);
+    if (!copied) return undefined;
+    const timer = setTimeout(() => setCopied(false), 1600);
+    return () => clearTimeout(timer);
   }, [copied]);
 
   const copy = async () => {
@@ -21,50 +19,27 @@ export default function CopyEmail({ email }) {
     }
   };
 
-  const key = copied ? 'copied' : 'idle';
-
   return (
-    <Magnetic strength={0.4}>
-    <motion.button
+    <button
       type="button"
       onClick={copy}
-      whileTap={{ scale: 0.94 }}
-      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-      className="group inline-flex items-center gap-1.5 text-fg-muted transition-colors duration-200 hover:text-fg"
-      aria-live="polite"
-      aria-label={copied ? 'Email copied' : `Copy email ${email}`}
+      className="group relative inline-flex h-5 w-5 shrink-0 items-center justify-center text-fg-subtle transition-colors duration-200 hover:text-fg"
+      aria-label={copied ? 'Copied' : `Copy ${email}`}
+      title={copied ? 'Copied' : 'Copy email'}
     >
-      <span className="relative inline-grid overflow-hidden">
-        <AnimatePresence mode="popLayout" initial={false}>
-          <motion.span
-            key={key}
-            initial={{ y: 12, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -12, opacity: 0 }}
-            transition={{ duration: 0.22, ease: 'easeOut' }}
-            className={`link-slide ${copied ? 'text-accent' : ''}`}
-          >
-            {copied ? 'Copied' : 'Email'}
-          </motion.span>
-        </AnimatePresence>
+      {copied ? (
+        <HiOutlineCheck className="h-3.5 w-3.5" aria-hidden="true" />
+      ) : (
+        <HiOutlineSquare2Stack className="h-3.5 w-3.5" aria-hidden="true" />
+      )}
+      <span
+        role="status"
+        className={`pointer-events-none absolute bottom-full left-1/2 z-10 mb-1 -translate-x-1/2 whitespace-nowrap text-xs text-fg transition-opacity duration-200 ${
+          copied ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        Copied
       </span>
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={key}
-          initial={{ scale: 0.4, opacity: 0, rotate: -30 }}
-          animate={{ scale: 1, opacity: 1, rotate: 0 }}
-          exit={{ scale: 0.4, opacity: 0, rotate: 30 }}
-          transition={{ type: 'spring', stiffness: 520, damping: 26 }}
-          className="inline-flex"
-        >
-          {copied ? (
-            <HiOutlineCheck className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-          ) : (
-            <HiOutlineClipboard className="h-3.5 w-3.5" aria-hidden="true" />
-          )}
-        </motion.span>
-      </AnimatePresence>
-    </motion.button>
-    </Magnetic>
+    </button>
   );
 }

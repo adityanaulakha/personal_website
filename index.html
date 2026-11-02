@@ -1,7 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <meta name="theme-color" content="#0e0e0d" />
+    <!-- Theme before first paint: saved choice, otherwise dark (ignore system preference). -->
+    <script>
+      (function () {
+        var theme = 'dark';
+        try {
+          var stored = localStorage.getItem('theme');
+          if (stored === 'dark' || stored === 'light') theme = stored;
+        } catch (e) {}
+        var root = document.documentElement;
+        root.setAttribute('data-theme', theme);
+        root.style.colorScheme = theme;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'light' ? '#faf9f6' : '#0e0e0d');
+      })();
+    </script>
+    <style>
+      html,
+      body {
+        background-color: #0e0e0d;
+        color: #f1efe9;
+        color-scheme: dark;
+      }
+      html[data-theme='light'],
+      html[data-theme='light'] body {
+        background-color: #faf9f6;
+        color: #141311;
+        color-scheme: light;
+      }
+    </style>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,15 +41,13 @@
       href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
     />
     <title>Aditya Naulakha — Software Developer</title>
-    <meta name="description" content="Aditya Naulakha builds full-stack products, real-time systems, and ML pipelines. Computer science student at GLA University and upcoming intern at EPAM Systems." />
+    <meta name="description" content="Aditya Naulakha builds full-stack products and real-time systems. Computer science student at GLA University and upcoming intern at EPAM Systems." />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://www.adityanaulakha.tech/" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#faf9f6" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0e0e0d" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="Aditya Naulakha — Software Developer" />
-    <meta property="og:description" content="Full-stack products, real-time systems, and ML. Computer science student at GLA University." />
+    <meta property="og:description" content="Full-stack products and real-time systems. Computer science student at GLA University." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.adityanaulakha.tech/" />
     <meta property="og:image" content="https://www.adityanaulakha.tech/og.png" />
@@ -30,7 +58,7 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Aditya Naulakha — Software Developer" />
-    <meta name="twitter:description" content="Full-stack products, real-time systems, and ML. Computer science student at GLA University." />
+    <meta name="twitter:description" content="Full-stack products and real-time systems. Computer science student at GLA University." />
     <meta name="twitter:image" content="https://www.adityanaulakha.tech/og.png" />
     <meta name="twitter:image:alt" content="Aditya Naulakha, software developer" />
 
@@ -43,27 +71,18 @@
         "url": "https://www.adityanaulakha.tech/",
         "jobTitle": "Software Developer",
         "alumniOf": "GLA University",
-        "knowsAbout": ["Full-Stack Development", "Artificial Intelligence", "Machine Learning", "System Design", "Salesforce"],
+        "email": "hi@iadityanaulakha.tech",
+        "knowsAbout": ["Full-Stack Development", "React", "Node.js", "TypeScript", "System Design"],
         "sameAs": [
+          "https://x.com/iadityanaulakha",
+          "https://www.linkedin.com/in/aditya-naulakha",
           "https://github.com/adityanaulakha",
-          "https://www.linkedin.com/in/aditya-naulakha/",
+          "https://www.instagram.com/adityanaulakha.tech",
           "https://takeuforward.org/profile/adityanaulakha"
         ]
       }
     </script>
 
-    <!-- Apply saved theme before first paint to avoid a flash -->
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem('theme');
-          var theme = stored === 'dark' || stored === 'light' ? stored : 'light';
-          document.documentElement.setAttribute('data-theme', theme);
-        } catch (e) {
-          document.documentElement.setAttribute('data-theme', 'light');
-        }
-      })();
-    </script>
   </head>
   <body>
     <div id="root"></div>

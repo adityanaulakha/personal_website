@@ -191,20 +191,6 @@ svg {
   vertical-align: baseline;
 }
 
-/* Live status dot */
-@keyframes pulse-dot {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 var(--c-accent-soft);
-  }
-  50% {
-    box-shadow: 0 0 0 5px transparent;
-  }
-}
-.live-dot {
-  animation: pulse-dot 2.2s ease-in-out infinite;
-}
-
 /* Experience disclosure chevron. Visible on touch; fades in on hover for pointers. */
 .exp-chevron {
   display: inline-flex;
@@ -251,12 +237,16 @@ svg {
   display: inline-flex;
   align-items: center;
   height: 2.5rem;
-  padding-inline: 0.7rem;
+  margin: 0;
+  padding: 0 0.7rem;
   border-radius: 0.625rem;
   border: 1px dashed var(--c-line-strong);
   background: transparent;
   color: var(--c-fg);
   cursor: default;
+  font: inherit;
+  line-height: 1;
+  text-align: left;
   transition:
     background-color 0.25s ease,
     border-color 0.25s ease;
@@ -266,6 +256,14 @@ svg {
 .tech-tile:focus-visible {
   background: var(--c-spot);
   border-color: color-mix(in srgb, var(--c-fg) 32%, transparent);
+}
+
+/* Tap focuses the control on touch screens, where hover never sticks. */
+@media (hover: none) {
+  .tech-tile:focus {
+    background: var(--c-spot);
+    border-color: color-mix(in srgb, var(--c-fg) 32%, transparent);
+  }
 }
 
 .tech-tile-label {
@@ -278,6 +276,12 @@ svg {
 .tech-tile:hover .tech-tile-label,
 .tech-tile:focus-visible .tech-tile-label {
   grid-template-columns: 1fr;
+}
+
+@media (hover: none) {
+  .tech-tile:focus .tech-tile-label {
+    grid-template-columns: 1fr;
+  }
 }
 
 .tech-tile-label > span {
@@ -295,6 +299,12 @@ svg {
 .tech-tile:hover .tech-tile-label > span,
 .tech-tile:focus-visible .tech-tile-label > span {
   opacity: 1;
+}
+
+@media (hover: none) {
+  .tech-tile:focus .tech-tile-label > span {
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
