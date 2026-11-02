@@ -7,7 +7,6 @@ export default function Work() {
   return (
     <Page>
       <PageHeader
-        eyebrow="01 / Work"
         title="Experience"
         description="An upcoming internship at EPAM Systems, plus the roles I have already shipped."
       />

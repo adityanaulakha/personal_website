@@ -6,12 +6,12 @@ export default function NotFound() {
   return (
     <Page className="py-20">
       <Block>
-        <p className="font-mono text-xs font-medium uppercase tracking-wider text-fg-subtle">404</p>
-        <h1 className="mt-1 text-2xl font-bold leading-tight text-fg" aria-label="Nothing here.">
+        <p className="text-xs font-medium text-fg-muted">404</p>
+        <h1 className="mt-1 text-2xl font-bold text-fg" aria-label="Nothing here.">
           <TextReveal text="Nothing here." delay={0.08} />
         </h1>
-        <p className="mt-1 text-sm font-normal leading-5 text-fg-muted md:text-base md:leading-6">The page you were looking for does not exist.</p>
-        <Link to="/" className="link-slide mt-6 inline-block text-fg">
+        <p className="mt-1 text-xs font-normal leading-5 text-fg-muted sm:text-sm">The page you were looking for does not exist.</p>
+        <Link to="/" className="link-slide mt-6 inline-block text-sm font-medium text-fg">
           Back home
         </Link>
       </Block>

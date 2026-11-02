@@ -8,7 +8,7 @@ const pages = [
   { label: 'Achievements', to: '/achievements' },
 ];
 
-const linkCls = 'text-sm text-fg-muted transition-colors duration-200 hover:text-fg';
+const linkCls = 'text-sm font-medium text-fg-muted transition-colors duration-200 hover:text-fg';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -17,7 +17,7 @@ export default function Footer() {
     <footer className="border-t border-line pb-10 pt-8 text-sm">
       <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <nav aria-label="Footer">
-          <p className="font-mono text-xs font-medium uppercase tracking-wider text-fg-subtle">Navigate</p>
+          <p className="text-xs font-medium text-fg-muted">Navigate</p>
           <ul className="mt-3 flex max-w-xs flex-wrap gap-x-4 gap-y-2">
             {pages.map((page) => (
               <li key={page.to}>
@@ -35,7 +35,7 @@ export default function Footer() {
         </nav>
 
         <div>
-          <p className="font-mono text-xs font-medium uppercase tracking-wider text-fg-subtle">Connect</p>
+          <p className="text-xs font-medium text-fg-muted">Connect</p>
           <ul className="mt-3 grid w-fit grid-cols-4 gap-2">
             {profile.socials.map((social) => {
               const external = social.href.startsWith('http');

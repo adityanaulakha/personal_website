@@ -6,7 +6,7 @@ export default function ExternalLink({ href, children, className = '' }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group/link inline-flex items-center gap-1 text-sm text-fg-muted transition-colors duration-200 hover:text-fg ${className}`}
+      className={`group/link inline-flex items-center gap-1 text-sm font-medium text-fg-muted transition-colors duration-200 hover:text-fg ${className}`}
     >
       <span className="link-slide">{children}</span>
       <HiOutlineArrowUpRight

@@ -3,24 +3,17 @@ import { HiOutlineArrowRight } from 'react-icons/hi2';
 import { Block, Reveal } from './PageTransition';
 import TextReveal from './TextReveal';
 
-export default function Section({ index, title, to, toLabel = 'View all', children, className = '' }) {
+export default function Section({ title, to, toLabel = 'View all', children, className = '' }) {
+  const headed = Boolean(title || to);
   return (
     <Reveal as="section" className={`mt-10 ${className}`}>
+      {headed && (
       <Block className="flex items-baseline justify-between gap-4">
-        <h2 className="flex items-baseline gap-3">
-          {index && (
-            <span className="font-mono text-xs font-medium uppercase tracking-wider text-fg-subtle">
-              {index}
-            </span>
-          )}
-          {title && (
-            <span className="text-lg font-semibold leading-tight text-fg">{title}</span>
-          )}
-        </h2>
+        {title ? <h2 className="text-2xl font-bold text-fg">{title}</h2> : null}
         {to && (
           <Link
             to={to}
-            className="group inline-flex shrink-0 items-center gap-1 text-sm text-fg-muted transition-colors duration-200 hover:text-fg"
+            className="group inline-flex shrink-0 items-center gap-1 text-sm font-medium text-fg-muted transition-colors duration-200 hover:text-fg"
           >
             <span className="link-slide">{toLabel}</span>
             <HiOutlineArrowRight
@@ -30,21 +23,21 @@ export default function Section({ index, title, to, toLabel = 'View all', childr
           </Link>
         )}
       </Block>
-      <div className="mt-4">{children}</div>
+      )}
+      <div className={headed ? 'mt-4' : undefined}>{children}</div>
     </Reveal>
   );
 }
 
-export function PageHeader({ eyebrow, title, description }) {
+export function PageHeader({ title, description }) {
   return (
     <Block as="header">
-      {eyebrow && (
-        <p className="font-mono text-xs font-medium uppercase tracking-wider text-fg-subtle">{eyebrow}</p>
-      )}
-      <h1 className="mt-1 text-2xl font-bold leading-tight text-fg" aria-label={title}>
+      <h1 className="text-2xl font-bold text-fg" aria-label={title}>
         <TextReveal text={title} delay={0.08} />
       </h1>
-      {description && <p className="mt-1 max-w-prose text-sm leading-5 text-fg-muted md:text-base md:leading-6">{description}</p>}
+      {description && (
+        <p className="mt-1 max-w-prose text-xs font-normal leading-5 text-fg-muted sm:text-sm">{description}</p>
+      )}
     </Block>
   );
 }

@@ -64,7 +64,7 @@ export default function Home() {
         />
         <div className="min-w-0">
           <h1
-            className="text-2xl font-bold leading-tight text-fg"
+            className="text-lg font-bold text-fg sm:text-2xl"
             aria-label={profile.name}
           >
             <TextReveal text={profile.name} delay={0.12} />
@@ -85,7 +85,7 @@ export default function Home() {
         </div>
       </Block>
 
-      <Block as="p" className="mt-4 max-w-prose text-sm font-normal leading-5 text-fg-muted">
+      <Block as="p" className="mt-4 max-w-prose text-xs font-normal leading-5 text-fg-muted sm:text-sm">
         {profile.bio}
       </Block>
 
@@ -118,12 +118,12 @@ export default function Home() {
       </Block>
 
       {/* Experience */}
-      <Section index="01" title="Experience">
+      <Section title="Experience">
         <ExperiencePreview />
       </Section>
 
       {/* Projects */}
-      <Section index="02" title="Selected projects" to="/projects" toLabel="All projects">
+      <Section title="Selected projects" to="/projects" toLabel="All projects">
         <div className="space-y-2">
           {projects.map((p) => (
             <Block key={p.id}>
@@ -134,7 +134,7 @@ export default function Home() {
       </Section>
 
       {/* Achievements */}
-      <Section index="03" title="Achievements" to="/achievements" toLabel="All achievements">
+      <Section title="Achievements" to="/achievements" toLabel="All achievements">
         <div className="space-y-1">
           {achievements.slice(0, 3).map((a) => (
             <Block key={a.id}>
@@ -145,7 +145,7 @@ export default function Home() {
       </Section>
 
       {/* Skills */}
-      <Section index="04" title="Skills">
+      <Section title="Skills">
         <div className="space-y-6">
           {skillGroups.map((group) => (
             <div key={group.id}>
@@ -174,7 +174,7 @@ export default function Home() {
             >
               <div>
                 <p className="text-base font-semibold leading-tight text-fg">Resume</p>
-                <p className="mt-1 text-sm text-fg-muted">One page, kept current.</p>
+                <p className="mt-1 text-xs font-normal text-fg-muted sm:text-sm">One page, kept current.</p>
               </div>
               <HiOutlineArrowUpRight
                 className="mt-1 h-4 w-4 shrink-0 text-fg-subtle transition-[transform,color] duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"
@@ -190,7 +190,7 @@ export default function Home() {
             >
               <div>
                 <p className="text-base font-semibold leading-tight text-fg">Say hello</p>
-                <p className="mt-1 text-sm text-fg-muted">{profile.email}</p>
+                <p className="mt-1 text-xs font-normal text-fg-muted sm:text-sm">{profile.email}</p>
               </div>
               <HiOutlineArrowUpRight
                 className="mt-1 h-4 w-4 shrink-0 text-fg-subtle transition-[transform,color] duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"

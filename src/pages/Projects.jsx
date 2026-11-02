@@ -7,7 +7,6 @@ export default function Projects() {
   return (
     <Page>
       <PageHeader
-        eyebrow="02 / Projects"
         title="Projects"
         description="An academic PWA, a live hackathon leaderboard, and a collaborative editor with Git-style history."
       />

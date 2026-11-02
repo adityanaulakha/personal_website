@@ -32,9 +32,9 @@ function ProjectTech({ project }) {
 
 function Metric({ project }) {
   return (
-    <div className="shrink-0 text-right font-mono text-xs font-medium leading-5 text-fg-subtle transition-colors duration-200 group-hover:text-fg-muted">
-      <p className="tabular-nums text-fg">{project.metric}</p>
-      {project.metricLabel ? <p>{project.metricLabel}</p> : null}
+    <div className="shrink-0 text-right font-mono text-sm font-normal leading-5 text-fg-muted transition-colors duration-200 group-hover:text-fg">
+      <p className="tabular-nums">{project.metric}</p>
+      {project.metricLabel ? <p className="font-medium">{project.metricLabel}</p> : null}
     </div>
   );
 }
@@ -73,7 +73,7 @@ export default function ProjectRow({ project, detailed = false }) {
       >
         <article className="flex items-start justify-between gap-6">
           <div className="min-w-0">
-            <h3 className="inline-flex items-center gap-1.5 text-lg font-semibold leading-tight text-fg">
+            <h3 className="inline-flex items-center gap-1.5 text-lg font-semibold text-fg">
               {project.title}
               {linked && (
                 <HiOutlineArrowUpRight
@@ -82,7 +82,7 @@ export default function ProjectRow({ project, detailed = false }) {
                 />
               )}
             </h3>
-            <p className="mt-0.5 text-sm font-normal leading-5 text-fg-muted">{project.summary}</p>
+            <p className="mt-0.5 text-xs font-normal leading-5 text-fg-muted sm:text-sm">{project.summary}</p>
           </div>
           <Metric project={project} />
         </article>
@@ -147,12 +147,12 @@ export default function ProjectRow({ project, detailed = false }) {
       )}
       <div className="min-w-0">
         <div className="flex items-start justify-between gap-6">
-          <h3 className="text-lg font-semibold leading-tight text-fg">{project.title}</h3>
+          <h3 className="text-lg font-semibold text-fg">{project.title}</h3>
           <Metric project={project} />
         </div>
-        <p className="mt-2 text-sm font-normal leading-5 text-fg-muted">{project.description}</p>
+        <p className="mt-2 text-xs font-normal leading-5 text-fg-muted sm:text-sm">{project.description}</p>
         {project.bullets?.length > 0 && (
-          <ul className="mt-3 space-y-2 text-sm font-normal leading-5 text-fg-muted">
+          <ul className="mt-3 space-y-2 text-xs font-normal leading-5 text-fg-muted sm:text-sm">
             {project.bullets.map((b) => (
               <li key={b} className="flex gap-3">
                 <span className="mt-[0.6em] h-1 w-1 shrink-0 rounded-full bg-fg-subtle" aria-hidden="true" />

@@ -43,7 +43,7 @@ function RowLayout({ exp, status, expandable, open }) {
   return (
     <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
       <div className="min-w-0">
-        <h3 className="flex flex-wrap items-center text-lg font-semibold leading-tight text-fg">
+        <h3 className="flex flex-wrap items-center text-lg font-bold text-fg">
           <span>{exp.company}</span>
           {status ? (
             <span className="ml-2 inline-flex">
@@ -63,9 +63,9 @@ function RowLayout({ exp, status, expandable, open }) {
         <p className="mt-0.5 text-sm font-normal leading-5 text-fg-muted">{exp.role}</p>
       </div>
       {showMeta ? (
-        <div className="shrink-0 font-mono text-xs font-medium leading-5 text-fg-muted sm:pt-1 sm:text-right">
+        <div className="shrink-0 font-mono text-sm font-normal leading-5 text-fg-muted sm:pt-1 sm:text-right">
           {range ? <p className="tabular-nums sm:whitespace-nowrap">{range}</p> : null}
-          {exp.location ? <p>{exp.location}</p> : null}
+          {exp.location ? <p className="font-medium">{exp.location}</p> : null}
         </div>
       ) : null}
     </div>
@@ -92,7 +92,7 @@ function Details({ exp }) {
       {bullets.length > 0 && (
         <div className={tech.length > 0 ? 'mt-5' : undefined}>
           <h4 className="text-base font-semibold leading-tight text-fg">What I&apos;ve done</h4>
-          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm font-normal leading-6 text-fg-muted marker:text-fg-subtle">
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-xs font-normal leading-5 text-fg-muted marker:text-fg-subtle sm:text-sm">
             {bullets.map((bullet) => (
               <li key={bullet}>{bullet}</li>
             ))}
