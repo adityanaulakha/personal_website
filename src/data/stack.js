@@ -37,9 +37,4 @@ export const skillGroups = [
       'CI/CD (GitHub Actions)',
     ],
   },
-  {
-    id: 'fundamentals',
-    label: 'CS Fundamentals',
-    items: ['DSA in Java (150+ problems)', 'OOP', 'DBMS', 'Computer Networks', 'System Design'],
-  },
 ];

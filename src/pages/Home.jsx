@@ -8,8 +8,8 @@ import ProjectRow from '../components/ProjectRow';
 import AchievementRow from '../components/AchievementRow';
 import TechTile from '../components/TechTile';
 import SpotlightCard from '../components/SpotlightCard';
-import Magnetic from '../components/Magnetic';
 import TextReveal from '../components/TextReveal';
+import CopyEmail from '../components/CopyEmail';
 import { profile } from '../data/profile';
 import { experience } from '../data/experience';
 import { projects } from '../data/projects';
@@ -19,7 +19,7 @@ import { resolveTech } from '../data/tech';
 import avatar from '../assets/profile-avatar.jpg';
 
 const spring = { type: 'spring', stiffness: 300, damping: 18 };
-const VISIBLE_EXPERIENCES = 2;
+const VISIBLE_EXPERIENCES = 3;
 
 function ExperiencePreview() {
   const [showAll, setShowAll] = useState(false);
@@ -85,6 +85,7 @@ export default function Home() {
             >
               {profile.taglineEmail}
             </a>
+            <CopyEmail email={profile.taglineEmail} />
           </p>
         </div>
       </Block>
@@ -93,25 +94,32 @@ export default function Home() {
         {profile.bio}
       </Block>
 
-      <Block className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
-        {profile.socials
-          .filter((s) => ['GitHub', 'TUF', 'LinkedIn'].includes(s.label))
-          .map((s) => (
-            <Magnetic key={s.label} strength={0.35}>
-              <motion.a
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={reduce ? undefined : { y: -2 }}
-                whileTap={reduce ? undefined : { scale: 0.98 }}
-                transition={{ type: 'spring', stiffness: 420, damping: 22 }}
-                className="inline-flex items-center gap-1.5 text-sm font-medium leading-5 text-fg-muted transition-colors duration-200 hover:text-fg"
-              >
-                <s.Icon className="h-4 w-4" aria-hidden="true" />
-                {s.label}
-              </motion.a>
-            </Magnetic>
-          ))}
+      <Block className="mt-5">
+        <ul className="flex items-center gap-4">
+          {profile.socials.map((s) => {
+            const external = s.href.startsWith('http');
+            return (
+              <li key={s.label}>
+                <a
+                  href={s.href}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                  aria-label={s.label}
+                  title={s.label}
+                  className="group relative inline-flex text-fg-subtle transition-colors duration-200 hover:text-fg focus-visible:text-fg"
+                >
+                  <s.Icon className="h-[18px] w-[18px]" aria-hidden="true" />
+                  <span
+                    role="tooltip"
+                    className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-1.5 -translate-x-1/2 whitespace-nowrap text-xs text-fg opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+                  >
+                    {s.label}
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </Block>
 
       {/* Currently */}

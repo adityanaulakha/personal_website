@@ -21,15 +21,7 @@ import {
 } from 'react-icons/si';
 import FirestoreIcon from '../components/icons/FirestoreIcon';
 import JavaIcon from '../components/icons/JavaIcon';
-import {
-  DbmsIcon,
-  DsaIcon,
-  NetworksIcon,
-  OopIcon,
-  RestIcon,
-  SqlIcon,
-  SystemDesignIcon,
-} from '../components/icons/MonogramIcon';
+import { RestIcon, SqlIcon } from '../components/icons/MonogramIcon';
 import WebSocketIcon from '../components/icons/WebSocketIcon';
 import ZustandIcon from '../components/icons/ZustandIcon';
 
@@ -74,11 +66,6 @@ const techByName = {
   'Git & GitHub': { Icon: SiGit, color: '#F05032' },
   'CI/CD (GitHub Actions)': { Icon: SiGithubactions, color: '#2088FF' },
   Redis: { Icon: SiRedis, color: '#FF4438' },
-  'DSA in Java (150+ problems)': { Icon: DsaIcon },
-  OOP: { Icon: OopIcon },
-  DBMS: { Icon: DbmsIcon },
-  'Computer Networks': { Icon: NetworksIcon },
-  'System Design': { Icon: SystemDesignIcon },
 };
 
 export function resolveTech(name) {

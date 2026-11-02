@@ -1,14 +1,16 @@
-import { SiGithub, SiLinkedin, SiInstagram } from 'react-icons/si';
-import { HiOutlineMail } from 'react-icons/hi';
+import { HiOutlineEnvelope } from 'react-icons/hi2';
+import { TbBrandGithub, TbBrandInstagram, TbBrandLinkedin, TbBrandX } from 'react-icons/tb';
 import TufIcon from '../components/TufIcon';
+
+const email = 'hi@iadityanaulakha.tech';
 
 export const profile = {
   name: 'Aditya Naulakha',
   firstName: 'Aditya',
   role: 'Engineer',
   tagline: 'Jack of all Trades',
-  email: 'hi@adityanaulakha.tech',
-  taglineEmail: 'hi@adityanaulakha.tech',
+  email,
+  taglineEmail: email,
   location: 'Mathura, Uttar Pradesh, India',
   education: {
     school: 'GLA University',
@@ -26,10 +28,11 @@ export const profile = {
     { label: 'President, Droid Club', detail: 'GLA University' },
   ],
   socials: [
-    { label: 'GitHub', href: 'https://github.com/adityanaulakha', Icon: SiGithub },
+    { label: 'X', href: 'https://x.com/iadityanaulakha', Icon: TbBrandX },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/aditya-naulakha', Icon: TbBrandLinkedin },
+    { label: 'GitHub', href: 'https://github.com/adityanaulakha', Icon: TbBrandGithub },
+    { label: 'Instagram', href: 'https://www.instagram.com/adityanaulakha.tech', Icon: TbBrandInstagram },
     { label: 'TUF', href: 'https://takeuforward.org/profile/adityanaulakha', Icon: TufIcon },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/aditya-naulakha', Icon: SiLinkedin },
-    { label: 'Instagram', href: 'https://www.instagram.com/adityanaulakha.tech/', Icon: SiInstagram },
-    { label: 'Email', href: 'mailto:hi@adityanaulakha.tech', Icon: HiOutlineMail },
+    { label: 'Email', href: `mailto:${email}`, Icon: HiOutlineEnvelope },
   ],
 };
