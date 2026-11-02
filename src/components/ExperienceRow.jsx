@@ -2,6 +2,7 @@ import { useId, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { HiOutlineChevronRight } from 'react-icons/hi2';
 import ExternalLink from './ExternalLink';
+import TechTile from './TechTile';
 import { experienceRange, experienceStatus } from '../data/experience';
 import { EASE } from '../lib/motion';
 
@@ -27,17 +28,6 @@ function StatusPill({ kind }) {
     >
       <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${pill.dot}`} aria-hidden="true" />
       {pill.label}
-    </span>
-  );
-}
-
-function TechTile({ name, Icon, color }) {
-  return (
-    <span className="tech-tile" tabIndex={0} aria-label={name}>
-      <Icon className="h-[18px] w-[18px] shrink-0" color={color} aria-hidden="true" />
-      <span className="tech-tile-label">
-        <span aria-hidden="true">{name}</span>
-      </span>
     </span>
   );
 }

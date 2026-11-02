@@ -1,10 +1,8 @@
-import {
-  SiReact,
-  SiTailwindcss,
-  SiGithub,
-  SiGit,
-  SiNodedotjs,
-} from 'react-icons/si';
+import { resolveTech } from './tech';
+
+function techOf(...names) {
+  return names.map((name) => resolveTech(name));
+}
 
 /** @returns {'working' | 'upcoming' | null} */
 export function experienceStatus(exp) {
@@ -47,17 +45,11 @@ export const experience = [
     short: 'Sep 25 – Nov 25',
     location: 'Remote',
     current: false,
-    tech: [
-      { name: 'React', Icon: SiReact, color: '#61DAFB' },
-      { name: 'Node.js', Icon: SiNodedotjs, color: '#339933' },
-      { name: 'Tailwind CSS', Icon: SiTailwindcss, color: '#06B6D4' },
-      { name: 'Git', Icon: SiGit, color: '#F05032' },
-      { name: 'GitHub', Icon: SiGithub },
-    ],
+    tech: techOf('React.js', 'Tailwind CSS', 'Git'),
     bullets: [
       'Designed scalable backend data pipelines integrated with AI-powered chatbots, reducing manual processing effort by 30% across live production workflows.',
       'Architected 10+ modular, reusable React.js and Tailwind CSS components enforcing OOP principles, with cross-browser compatibility across 5+ environments.',
-      'Resolved 25+ production-level bugs through root-cause analysis, and kept Git workflows clean with structured code reviews in an agile environment.',
+      'Resolved 25+ production-level bugs through systematic root-cause analysis, and kept Git workflows clean with structured code reviews in an agile environment.',
     ],
     links: [
       {
@@ -68,7 +60,7 @@ export const experience = [
   },
   {
     id: 'baoiam',
-    company: 'Baoiam Innovations',
+    company: 'Baoiam Innovations Pvt. Ltd',
     role: 'Front-End Developer Intern',
     type: 'Internship',
     start: 'Jun 2024',
@@ -76,16 +68,10 @@ export const experience = [
     short: 'Jun 24 – Aug 24',
     location: 'Remote',
     current: false,
-    tech: [
-      { name: 'React', Icon: SiReact, color: '#61DAFB' },
-      { name: 'Tailwind CSS', Icon: SiTailwindcss, color: '#06B6D4' },
-      { name: 'REST APIs', Icon: SiNodedotjs, color: '#339933' },
-      { name: 'Git', Icon: SiGit, color: '#F05032' },
-      { name: 'GitHub', Icon: SiGithub },
-    ],
+    tech: techOf('React.js', 'Tailwind CSS', 'REST APIs'),
     bullets: [
       'Built a responsive e-commerce platform with React.js and Tailwind CSS, and integrated REST APIs for catalog, cart, and order management across 3+ browsers.',
-      'Shipped 5+ feature modules in 2-week agile sprints, reducing the UI bug backlog by 35% across 3 product tracks while keeping version control clean.',
+      'Shipped 5+ feature modules in 2-week agile sprints, reducing the UI bug backlog by 35% across 3 product tracks.',
     ],
     links: [
       { label: 'Project', href: 'https://divueens-frontend.vercel.app/' },

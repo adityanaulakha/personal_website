@@ -6,7 +6,7 @@ import Section from '../components/Section';
 import ExperienceRow from '../components/ExperienceRow';
 import ProjectRow from '../components/ProjectRow';
 import AchievementRow from '../components/AchievementRow';
-import TechChip from '../components/TechChip';
+import TechTile from '../components/TechTile';
 import SpotlightCard from '../components/SpotlightCard';
 import Magnetic from '../components/Magnetic';
 import TextReveal from '../components/TextReveal';
@@ -14,7 +14,8 @@ import { profile } from '../data/profile';
 import { experience } from '../data/experience';
 import { projects } from '../data/projects';
 import { achievements } from '../data/achievements';
-import { stack } from '../data/stack';
+import { skillGroups } from '../data/stack';
+import { resolveTech } from '../data/tech';
 import avatar from '../assets/profile-avatar.jpg';
 
 const spring = { type: 'spring', stiffness: 300, damping: 18 };
@@ -162,11 +163,19 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Stack */}
-      <Section index="04" title="Stack">
-        <div className="flex flex-wrap gap-2">
-          {stack.map((item) => (
-            <TechChip key={item} name={item} />
+      {/* Skills */}
+      <Section index="04" title="Skills">
+        <div className="space-y-6">
+          {skillGroups.map((group) => (
+            <div key={group.id}>
+              <h3 className="text-sm font-semibold leading-5 text-fg">{group.label}</h3>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {group.items.map((item) => {
+                  const tech = resolveTech(item);
+                  return <TechTile key={item} name={tech.name} Icon={tech.Icon} color={tech.color} />;
+                })}
+              </div>
+            </div>
           ))}
         </div>
       </Section>
