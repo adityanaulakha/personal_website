@@ -29,9 +29,9 @@ export default function App() {
       >
         Skip to content
       </a>
-      <div className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-5 sm:px-6">
+      <div className="mx-auto flex min-h-dvh w-full max-w-[640px] flex-col px-5 sm:px-6">
         <SiteNav />
-        <main id="main" className="flex-1 pt-8 pb-16">
+        <main id="main" className="flex-1 pt-12 pb-20 sm:pt-16">
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
               <Route path="/" element={<Home />} />

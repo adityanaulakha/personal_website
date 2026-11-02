@@ -15,7 +15,7 @@ export default function ThemeToggle() {
       transition={{ type: 'spring', stiffness: 500, damping: 28 }}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       title={isDark ? 'Light mode' : 'Dark mode'}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full text-fg-muted transition-colors hover:bg-fg/5 hover:text-fg"
+      className="inline-flex h-7 w-7 items-center justify-center text-fg-muted transition-colors hover:text-fg"
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
@@ -27,9 +27,9 @@ export default function ThemeToggle() {
           className="inline-flex"
         >
           {isDark ? (
-            <HiOutlineSun className="h-[18px] w-[18px]" />
+            <HiOutlineSun className="h-4 w-4" />
           ) : (
-            <HiOutlineMoon className="h-[18px] w-[18px]" />
+            <HiOutlineMoon className="h-4 w-4" />
           )}
         </motion.span>
       </AnimatePresence>

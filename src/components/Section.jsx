@@ -3,13 +3,13 @@ import { HiOutlineArrowRight } from 'react-icons/hi2';
 import { Block, Reveal } from './PageTransition';
 import TextReveal from './TextReveal';
 
-export default function Section({ title, to, toLabel = 'View all', children, className = '' }) {
+export default function Section({ id, title, to, toLabel = 'View all', children, className = '' }) {
   const headed = Boolean(title || to);
   return (
-    <Reveal as="section" className={`mt-10 ${className}`}>
+    <Reveal as="section" id={id} className={`mt-16 scroll-mt-8 sm:mt-20 ${className}`}>
       {headed && (
       <Block className="flex items-baseline justify-between gap-4">
-        {title ? <h2 className="text-2xl font-bold text-fg">{title}</h2> : null}
+        {title ? <h2 className="text-xl font-bold text-fg">{title}</h2> : null}
         {to && (
           <Link
             to={to}
@@ -32,11 +32,11 @@ export default function Section({ title, to, toLabel = 'View all', children, cla
 export function PageHeader({ title, description }) {
   return (
     <Block as="header">
-      <h1 className="text-2xl font-bold text-fg" aria-label={title}>
+      <h1 className="text-xl font-bold text-fg" aria-label={title}>
         <TextReveal text={title} delay={0.08} />
       </h1>
       {description && (
-        <p className="mt-1 max-w-prose text-xs font-normal leading-5 text-fg-muted sm:text-sm">{description}</p>
+        <p className="mt-1 max-w-prose text-sm font-normal leading-5 text-fg-muted">{description}</p>
       )}
     </Block>
   );

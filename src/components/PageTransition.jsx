@@ -40,12 +40,13 @@ export function Block({ children, className = '', as = 'div' }) {
 }
 
 /** Scroll-triggered container: staggers its Block children when it enters the viewport. */
-export function Reveal({ children, className = '', as = 'div', amount = 0.15 }) {
+export function Reveal({ children, className = '', as = 'div', amount = 0.15, id }) {
   const reduce = useReducedMotion();
   const Comp = motion[as] ?? motion.div;
-  if (reduce) return <Comp className={className}>{children}</Comp>;
+  if (reduce) return <Comp id={id} className={className}>{children}</Comp>;
   return (
     <Comp
+      id={id}
       variants={container}
       initial="hidden"
       whileInView="show"
