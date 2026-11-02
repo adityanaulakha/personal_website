@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
 import { HiOutlineArrowUpRight } from 'react-icons/hi2';
 import { Page, Block } from '../components/PageTransition';
@@ -22,9 +22,7 @@ const spring = { type: 'spring', stiffness: 300, damping: 18 };
 const VISIBLE_EXPERIENCES = 3;
 
 function ExperiencePreview() {
-  const [showAll, setShowAll] = useState(false);
-  const hasMore = experience.length > VISIBLE_EXPERIENCES;
-  const visible = showAll || !hasMore ? experience : experience.slice(0, VISIBLE_EXPERIENCES);
+  const visible = experience.slice(0, VISIBLE_EXPERIENCES);
 
   return (
     <>
@@ -35,17 +33,14 @@ function ExperiencePreview() {
           </Block>
         ))}
       </div>
-      {hasMore && !showAll ? (
-        <Block className="mt-4 flex justify-center">
-          <button
-            type="button"
-            onClick={() => setShowAll(true)}
-            className="rounded-lg border border-line-strong px-4 py-2 text-sm text-fg-muted transition-colors duration-200 hover:border-fg/30 hover:text-fg"
-          >
-            Show all work experiences
-          </button>
-        </Block>
-      ) : null}
+      <Block className="mt-4 flex justify-center">
+        <Link
+          to="/work"
+          className="inline-block rounded-lg border border-line-strong px-4 py-2 text-sm text-fg-muted transition-colors duration-200 hover:border-fg/30 hover:text-fg"
+        >
+          Show all work experiences
+        </Link>
+      </Block>
     </>
   );
 }
@@ -120,28 +115,6 @@ export default function Home() {
             );
           })}
         </ul>
-      </Block>
-
-      {/* Currently */}
-      <Block className="mt-10">
-        <SpotlightCard className="p-5" lift={false}>
-          <p className="text-sm font-semibold leading-5 text-fg">Currently</p>
-          <ul className="mt-3 space-y-3">
-            {profile.currently.map((c) => (
-              <li key={c.label} className="grid gap-0.5 sm:grid-cols-[11.5rem_1fr] sm:items-baseline sm:gap-x-6">
-                <p className="flex items-center gap-2 text-sm font-semibold leading-5 text-fg">
-                  {c.live && (
-                    <span className="live-dot h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-                  )}
-                  {c.label}
-                </p>
-                <p className="text-sm leading-5 text-fg-muted">
-                  {c.detail}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </SpotlightCard>
       </Block>
 
       {/* Experience */}

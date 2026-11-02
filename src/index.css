@@ -191,20 +191,6 @@ svg {
   vertical-align: baseline;
 }
 
-/* Live status dot */
-@keyframes pulse-dot {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 var(--c-accent-soft);
-  }
-  50% {
-    box-shadow: 0 0 0 5px transparent;
-  }
-}
-.live-dot {
-  animation: pulse-dot 2.2s ease-in-out infinite;
-}
-
 /* Experience disclosure chevron. Visible on touch; fades in on hover for pointers. */
 .exp-chevron {
   display: inline-flex;
