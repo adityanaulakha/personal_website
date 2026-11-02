@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Page, Block } from '../components/PageTransition';
 import TextReveal from '../components/TextReveal';
-import useDocumentTitle from '../hooks/useDocumentTitle';
 
 export default function NotFound() {
-  useDocumentTitle('Not found');
   return (
     <Page className="py-20">
       <Block>

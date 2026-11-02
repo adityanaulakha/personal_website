@@ -11,9 +11,11 @@ import Work from './pages/Work';
 import Projects from './pages/Projects';
 import Achievements from './pages/Achievements';
 import NotFound from './pages/NotFound';
+import usePageMeta from './hooks/usePageMeta';
 
 export default function App() {
   const location = useLocation();
+  usePageMeta();
 
   return (
     <>

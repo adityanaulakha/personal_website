@@ -33,58 +33,124 @@
       }
     </style>
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="author" content="Aditya Naulakha" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
     />
-    <title>Aditya Naulakha — Software Developer</title>
+    <title>Aditya Naulakha — Software Engineer</title>
     <meta name="description" content="Aditya Naulakha builds full-stack web apps, real-time systems, PWAs, and AI-powered tools. RemindrX and LeadX are live." />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://www.adityanaulakha.tech/" />
+    <link rel="canonical" href="https://adityanaulakha.tech/" />
+    <!-- Google Search Console: paste the token from Search Console, then uncomment.
+    <meta name="google-site-verification" content="" />
+    -->
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Aditya Naulakha — Software Developer" />
+    <meta property="og:site_name" content="Aditya Naulakha" />
+    <meta property="og:title" content="Aditya Naulakha — Software Engineer" />
     <meta property="og:description" content="Full-stack web apps, real-time systems, PWAs, and AI-powered tools. RemindrX and LeadX are live." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.adityanaulakha.tech/" />
-    <meta property="og:image" content="https://www.adityanaulakha.tech/og.png" />
+    <meta property="og:url" content="https://adityanaulakha.tech/" />
+    <meta property="og:image" content="https://adityanaulakha.tech/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Aditya Naulakha, software developer" />
+    <meta property="og:image:alt" content="Aditya Naulakha, software engineer" />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Aditya Naulakha — Software Developer" />
+    <meta name="twitter:creator" content="@iadityanaulakha" />
+    <meta name="twitter:title" content="Aditya Naulakha — Software Engineer" />
     <meta name="twitter:description" content="Full-stack web apps, real-time systems, PWAs, and AI-powered tools. RemindrX and LeadX are live." />
-    <meta name="twitter:image" content="https://www.adityanaulakha.tech/og.png" />
-    <meta name="twitter:image:alt" content="Aditya Naulakha, software developer" />
+    <meta name="twitter:image" content="https://adityanaulakha.tech/og.png" />
+    <meta name="twitter:image:alt" content="Aditya Naulakha, software engineer" />
 
-    <!-- Structured Data: Person -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Aditya Naulakha",
-        "url": "https://www.adityanaulakha.tech/",
-        "jobTitle": "Software Developer",
-        "alumniOf": "GLA University",
-        "email": "hi@iadityanaulakha.tech",
-        "knowsAbout": ["Full-Stack Development", "React", "Node.js", "TypeScript", "System Design"],
-        "sameAs": [
-          "https://x.com/iadityanaulakha",
-          "https://www.linkedin.com/in/aditya-naulakha",
-          "https://github.com/adityanaulakha",
-          "https://www.instagram.com/adityanaulakha.tech",
-          "https://takeuforward.org/profile/adityanaulakha"
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://adityanaulakha.tech/#person",
+            "name": "Aditya Naulakha",
+            "url": "https://adityanaulakha.tech/",
+            "jobTitle": "Software Engineer",
+            "email": "hi@iadityanaulakha.tech",
+            "image": "https://adityanaulakha.tech/og.png",
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "GLA University"
+            },
+            "sameAs": [
+              "https://github.com/adityanaulakha",
+              "https://www.linkedin.com/in/aditya-naulakha",
+              "https://x.com/iadityanaulakha",
+              "https://www.instagram.com/adityanaulakha.tech",
+              "https://takeuforward.org/profile/adityanaulakha"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://adityanaulakha.tech/#website",
+            "url": "https://adityanaulakha.tech/",
+            "name": "Aditya Naulakha",
+            "description": "Aditya Naulakha builds full-stack web apps, real-time systems, PWAs, and AI-powered tools. RemindrX and LeadX are live.",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://adityanaulakha.tech/#person" }
+          },
+          {
+            "@type": "ItemList",
+            "name": "Projects",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "RemindrX",
+                  "url": "https://www.remindrx.xyz",
+                  "description": "Offline-first academic management PWA.",
+                  "author": { "@id": "https://adityanaulakha.tech/#person" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "LeadX",
+                  "url": "https://lead-x-three.vercel.app",
+                  "description": "Real-time hackathon leaderboard and judge portal.",
+                  "author": { "@id": "https://adityanaulakha.tech/#person" }
+                }
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                  "@type": "CreativeWork",
+                  "name": "GitDocs",
+                  "url": "https://adityanaulakha.tech/projects",
+                  "description": "Collaborative editor with Git-style version control.",
+                  "author": { "@id": "https://adityanaulakha.tech/#person" }
+                }
+              }
+            ]
+          }
         ]
       }
     </script>
 
   </head>
   <body>
+    <noscript>
+      <p><strong>Aditya Naulakha</strong> — Software Engineer. I build full-stack web apps, real-time systems, PWAs, and AI-powered tools. RemindrX and LeadX are live.</p>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

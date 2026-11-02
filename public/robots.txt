@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.adityanaulakha.tech/sitemap.xml
+Sitemap: https://adityanaulakha.tech/sitemap.xml
