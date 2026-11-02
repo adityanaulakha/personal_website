@@ -45,7 +45,7 @@ export const experience = [
     short: 'Sep 25 – Nov 25',
     location: 'Remote',
     current: false,
-    tech: techOf('React.js', 'Tailwind CSS', 'Git'),
+    tech: techOf('React.js', 'Tailwind CSS', 'Git', 'Vercel', 'Express', 'Node.js', 'JavaScript', 'Render'),
     bullets: [
       'Designed scalable backend data pipelines integrated with AI-powered chatbots, reducing manual processing effort by 30% across live production workflows.',
       'Architected 10+ modular, reusable React.js and Tailwind CSS components enforcing OOP principles, with cross-browser compatibility across 5+ environments.',
@@ -68,7 +68,7 @@ export const experience = [
     short: 'Jun 24 – Aug 24',
     location: 'Remote',
     current: false,
-    tech: techOf('React.js', 'Tailwind CSS', 'REST APIs'),
+    tech: techOf('React.js', 'Tailwind CSS', 'REST APIs', 'Vercel', 'Render', 'HTML', 'CSS', 'JavaScript', 'Figma'),
     bullets: [
       'Built a responsive e-commerce platform with React.js and Tailwind CSS, and integrated REST APIs for catalog, cart, and order management across 3+ browsers.',
       'Shipped 5+ feature modules in 2-week agile sprints, reducing the UI bug backlog by 35% across 3 product tracks.',
