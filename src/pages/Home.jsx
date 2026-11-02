@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { HiOutlineArrowUpRight } from 'react-icons/hi2';
 import { Page, Block } from '../components/PageTransition';
@@ -6,7 +7,6 @@ import ExperienceRow from '../components/ExperienceRow';
 import ProjectRow from '../components/ProjectRow';
 import AchievementRow from '../components/AchievementRow';
 import TechChip from '../components/TechChip';
-import CopyEmail from '../components/CopyEmail';
 import SpotlightCard from '../components/SpotlightCard';
 import Magnetic from '../components/Magnetic';
 import TextReveal from '../components/TextReveal';
@@ -18,6 +18,36 @@ import { stack } from '../data/stack';
 import avatar from '../assets/profile-avatar.jpg';
 
 const spring = { type: 'spring', stiffness: 300, damping: 18 };
+const VISIBLE_EXPERIENCES = 2;
+
+function ExperiencePreview() {
+  const [showAll, setShowAll] = useState(false);
+  const hasMore = experience.length > VISIBLE_EXPERIENCES;
+  const visible = showAll || !hasMore ? experience : experience.slice(0, VISIBLE_EXPERIENCES);
+
+  return (
+    <>
+      <div className="space-y-0.5">
+        {visible.map((exp) => (
+          <Block key={exp.id}>
+            <ExperienceRow exp={exp} />
+          </Block>
+        ))}
+      </div>
+      {hasMore && !showAll ? (
+        <Block className="mt-4 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setShowAll(true)}
+            className="rounded-lg border border-line-strong px-4 py-2 text-sm text-fg-muted transition-colors duration-200 hover:border-fg/30 hover:text-fg"
+          >
+            Show all work experiences
+          </button>
+        </Block>
+      ) : null}
+    </>
+  );
+}
 
 export default function Home() {
   const reduce = useReducedMotion();
@@ -48,9 +78,12 @@ export default function Home() {
             <span aria-hidden="true">·</span>
             <span>{profile.tagline}</span>
             <span aria-hidden="true">·</span>
-            <span className="inline-flex">
-              <CopyEmail email={profile.email} />
-            </span>
+            <a
+              href={`mailto:${profile.taglineEmail}`}
+              className="link-slide transition-colors duration-200 hover:text-fg"
+            >
+              {profile.taglineEmail}
+            </a>
           </p>
         </div>
       </Block>
@@ -103,14 +136,8 @@ export default function Home() {
       </Block>
 
       {/* Experience */}
-      <Section index="01" title="Experience" to="/work" toLabel="All experience">
-        <div className="space-y-2">
-          {experience.slice(0, 3).map((exp) => (
-            <Block key={exp.id}>
-              <ExperienceRow exp={exp} />
-            </Block>
-          ))}
-        </div>
+      <Section index="01" title="Experience">
+        <ExperiencePreview />
       </Section>
 
       {/* Projects */}

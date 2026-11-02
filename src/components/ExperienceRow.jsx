@@ -1,134 +1,181 @@
-import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { HiOutlineArrowRight } from 'react-icons/hi2';
-import TechChip from './TechChip';
+import { useId, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { HiOutlineChevronRight } from 'react-icons/hi2';
 import ExternalLink from './ExternalLink';
+import { experienceRange, experienceStatus } from '../data/experience';
 import { EASE } from '../lib/motion';
 
-function Meta({ exp, detailed }) {
-  const range = detailed
-    ? exp.end
-      ? `${exp.start} – ${exp.end}`
-      : exp.start
-    : exp.short;
-  return (
-    <div className="shrink-0 text-right text-sm font-normal leading-5 text-fg-subtle transition-colors duration-200 group-hover:text-fg-muted">
-      <p className="tabular-nums">{range}</p>
-      {exp.location ? <p>{exp.location}</p> : null}
-    </div>
-  );
-}
+const PILLS = {
+  working: {
+    label: 'Working',
+    className: 'bg-working-soft text-working',
+    dot: 'bg-working',
+  },
+  upcoming: {
+    label: 'Upcoming',
+    className: 'bg-upcoming-soft text-upcoming',
+    dot: 'bg-upcoming',
+  },
+};
 
-function Status({ exp }) {
-  if (!exp.current) return null;
+function StatusPill({ kind }) {
+  const pill = PILLS[kind];
+  if (!pill) return null;
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent-soft px-2 py-0.5 text-xs font-medium text-accent">
-      <span className="live-dot h-1.5 w-1.5 rounded-full bg-accent" />
-      Working
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-md px-2 py-0.5 text-xs font-medium leading-4 ${pill.className}`}
+    >
+      <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${pill.dot}`} aria-hidden="true" />
+      {pill.label}
     </span>
   );
 }
 
-export default function ExperienceRow({ exp, detailed = false }) {
-  if (!detailed) {
-    return (
-      <Link
-        to="/work"
-        className="row-ink group -mx-3 block rounded-lg px-3 py-2.5"
-        aria-label={`${exp.role} at ${exp.company}`}
-      >
-        <article className="flex items-start justify-between gap-6">
-          <div className="min-w-0">
-            <h3 className="flex flex-wrap items-center gap-2 text-lg font-bold leading-7 text-fg">
-              <span className="inline-flex items-center gap-1.5">
-                {exp.company}
-                <HiOutlineArrowRight
-                  className="h-3.5 w-3.5 -translate-x-1 text-fg-subtle opacity-0 transition-[opacity,transform] duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100"
-                  aria-hidden="true"
-                />
-              </span>
-              <Status exp={exp} />
-            </h3>
-            <p className="mt-0.5 text-sm font-normal leading-5 text-fg-muted">{exp.role}</p>
+function TechTile({ name, Icon, color }) {
+  return (
+    <span className="tech-tile" tabIndex={0} aria-label={name}>
+      <Icon className="h-[18px] w-[18px] shrink-0" color={color} aria-hidden="true" />
+      <span className="tech-tile-label">
+        <span aria-hidden="true">{name}</span>
+      </span>
+    </span>
+  );
+}
+
+function hasDetails(exp) {
+  return (exp.tech?.length ?? 0) > 0 || (exp.bullets?.length ?? 0) > 0 || (exp.links?.length ?? 0) > 0;
+}
+
+function RowLayout({ exp, status, expandable, open }) {
+  const range = experienceRange(exp);
+  const showMeta = Boolean(range || exp.location);
+
+  return (
+    <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+      <div className="min-w-0">
+        <h3 className="flex flex-wrap items-center text-lg font-bold leading-7 text-fg">
+          <span>{exp.company}</span>
+          {status ? (
+            <span className="ml-2 inline-flex">
+              <StatusPill kind={status} />
+            </span>
+          ) : null}
+          {expandable ? (
+            <span className="exp-chevron" data-open={open ? 'true' : 'false'} aria-hidden="true">
+              <HiOutlineChevronRight
+                className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ease-out ${
+                  open ? 'rotate-90' : ''
+                }`}
+              />
+            </span>
+          ) : null}
+        </h3>
+        <p className="mt-0.5 text-sm font-normal leading-5 text-fg-muted">{exp.role}</p>
+      </div>
+      {showMeta ? (
+        <div className="shrink-0 text-sm font-normal leading-5 text-fg-muted sm:pt-1 sm:text-right">
+          {range ? <p className="tabular-nums sm:whitespace-nowrap">{range}</p> : null}
+          {exp.location ? <p>{exp.location}</p> : null}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function Details({ exp }) {
+  const tech = exp.tech ?? [];
+  const bullets = exp.bullets ?? [];
+  const links = exp.links ?? [];
+
+  return (
+    <div className="border-t border-line pt-4">
+      {tech.length > 0 && (
+        <div>
+          <h4 className="text-base font-semibold leading-6 text-fg">Technologies & Tools</h4>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {tech.map((item) => (
+              <TechTile key={item.name} name={item.name} Icon={item.Icon} color={item.color} />
+            ))}
           </div>
-          <Meta exp={exp} detailed={false} />
-        </article>
-      </Link>
+        </div>
+      )}
+      {bullets.length > 0 && (
+        <div className={tech.length > 0 ? 'mt-5' : undefined}>
+          <h4 className="text-base font-semibold leading-6 text-fg">What I&apos;ve done</h4>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm font-normal leading-6 text-fg-muted marker:text-fg-subtle">
+            {bullets.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {links.length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+          {links.map((link) => (
+            <ExternalLink key={link.href} href={link.href}>
+              {link.label}
+            </ExternalLink>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function ExperienceRow({ exp }) {
+  const reduce = useReducedMotion();
+  const uid = useId();
+  const panelId = `exp-panel-${uid}`;
+  const triggerId = `exp-trigger-${uid}`;
+  const [open, setOpen] = useState(false);
+  const status = experienceStatus(exp);
+  const expandable = hasDetails(exp);
+
+  if (!expandable) {
+    return (
+      <article className="py-3">
+        <RowLayout exp={exp} status={status} expandable={false} open={false} />
+      </article>
     );
   }
 
   return (
-    <article className="hairline group border-b pb-10 last:border-b-0 last:pb-0">
-      <div className="flex items-start justify-between gap-6">
-        <div className="min-w-0">
-          <h3 className="flex flex-wrap items-center gap-2 text-lg font-bold leading-7 text-fg">
-            {exp.company}
-            <Status exp={exp} />
-          </h3>
-          <p className="mt-0.5 text-sm font-normal leading-5 text-fg-muted">{exp.role}</p>
-        </div>
-        <Meta exp={exp} detailed />
-      </div>
-
-      {(exp.tech?.length > 0 || exp.bullets?.length > 0 || exp.links?.length > 0) && (
-      <div className="mt-6 space-y-6">
-        {exp.tech?.length > 0 && (
-          <div>
-            <h4 className="mb-2 text-sm font-semibold leading-5 text-fg">
-              Technologies
-            </h4>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {exp.tech.map((t, i) => (
-                <motion.span
-                  key={t.name}
-                  initial={{ opacity: 0, y: 8, scale: 0.92 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.045, ease: EASE }}
-                  className="inline-flex"
-                >
-                  <TechChip name={t.name} Icon={t.Icon} />
-                </motion.span>
-              ))}
+    <article className="py-1">
+      <button
+        id={triggerId}
+        type="button"
+        className="group w-full cursor-pointer rounded-lg bg-transparent py-2 text-left"
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={() => setOpen((value) => !value)}
+      >
+        <RowLayout exp={exp} status={status} expandable open={open} />
+      </button>
+      <AnimatePresence initial={false}>
+        {open ? (
+          <motion.div
+            id={panelId}
+            role="region"
+            aria-labelledby={triggerId}
+            initial={reduce ? false : { height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={
+              reduce
+                ? { duration: 0 }
+                : {
+                    height: { duration: 0.35, ease: EASE },
+                    opacity: { duration: 0.25, ease: 'easeOut' },
+                  }
+            }
+            className="overflow-hidden"
+          >
+            <div className="pb-3 pt-1">
+              <Details exp={exp} />
             </div>
-          </div>
-        )}
-        {exp.bullets?.length > 0 && (
-        <div>
-          <h4 className="mb-2 text-sm font-semibold leading-5 text-fg">
-            What I did
-          </h4>
-          <ul className="space-y-2 text-sm font-normal leading-5 text-fg-muted">
-            {exp.bullets.map((b, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: -8 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.08 + i * 0.07, ease: EASE }}
-                className="flex gap-3 transition-[color,transform] duration-200 hover:translate-x-1 hover:text-fg"
-              >
-                <span
-                  className="mt-[0.6em] h-1 w-1 shrink-0 rounded-full bg-fg-subtle transition-colors duration-200 group-hover:bg-accent"
-                  aria-hidden="true"
-                />
-                <span>{b}</span>
-              </motion.li>
-            ))}
-          </ul>
-        </div>
-        )}
-        {exp.links?.length > 0 && (
-          <div className="flex flex-wrap gap-5">
-            {exp.links.map((l) => (
-              <ExternalLink key={l.href} href={l.href}>
-                {l.label}
-              </ExternalLink>
-            ))}
-          </div>
-        )}
-      </div>
-      )}
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </article>
   );
 }

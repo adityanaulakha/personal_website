@@ -5,9 +5,10 @@ import TufIcon from '../components/TufIcon';
 export const profile = {
   name: 'Aditya Naulakha',
   firstName: 'Aditya',
-  role: 'Software Developer',
-  tagline: 'Full-stack · AI · Systems',
+  role: 'Engineer',
+  tagline: 'Jack of all Trades',
   email: 'naulakhaaditya4@gmail.com',
+  taglineEmail: 'hi@adityanaulakha.tech',
   location: 'Mathura, Uttar Pradesh, India',
   education: {
     school: 'GLA University',
