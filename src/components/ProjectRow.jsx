@@ -112,7 +112,7 @@ export default function ProjectRow({ project, detailed = false }) {
   }
 
   return (
-    <article className={`hairline group grid gap-6 border-b pb-10 last:border-b-0 last:pb-0 ${project.image ? 'sm:grid-cols-[160px_1fr]' : ''}`}>
+    <article className={`hairline group grid gap-6 border-b pb-10 last:border-b-0 last:pb-0 ${project.image ? 'sm:grid-cols-[160px_1fr] sm:items-start' : ''}`}>
       {project.image && (
       <TiltCard
         as={project.live ? 'a' : 'div'}
@@ -129,7 +129,7 @@ export default function ProjectRow({ project, detailed = false }) {
           decoding="async"
           width={1200}
           height={750}
-          className="aspect-[16/10] w-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/thumb:scale-[1.06]"
+          className="block h-auto w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/thumb:scale-[1.06]"
         />
         {project.live && (
         <span
