@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { motion, useScroll, useMotionValueEvent } from 'motion/react';
+import { motion, useReducedMotion, useScroll, useMotionValueEvent } from 'motion/react';
 import { HiOutlineArrowUpRight } from 'react-icons/hi2';
 import ThemeToggle from './ThemeToggle';
 import Magnetic from './Magnetic';
@@ -14,6 +14,7 @@ const links = [
 ];
 
 export default function SiteNav() {
+  const reduce = useReducedMotion() === true;
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 12));
@@ -49,7 +50,11 @@ export default function SiteNav() {
                         <motion.span
                           layoutId="nav-active"
                           className="absolute inset-x-0 -bottom-0.5 h-px bg-fg"
-                          transition={{ type: 'spring', stiffness: 520, damping: 42 }}
+                          transition={
+                            reduce
+                              ? { duration: 0 }
+                              : { type: 'spring', stiffness: 520, damping: 42 }
+                          }
                           aria-hidden="true"
                         />
                       ) : (

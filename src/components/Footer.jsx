@@ -47,7 +47,7 @@ export default function Footer() {
                     rel={external ? 'noopener noreferrer' : undefined}
                     aria-label={social.label}
                     title={social.label}
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-line-strong text-fg-muted transition-colors duration-200 hover:border-fg/40 hover:text-fg"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-line-strong text-fg-muted transition-[color,border-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-fg/40 hover:text-fg focus-visible:-translate-y-0.5"
                   >
                     <social.Icon className="h-4 w-4" aria-hidden="true" />
                   </a>

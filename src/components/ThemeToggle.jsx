@@ -1,17 +1,18 @@
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi';
 import { useTheme } from '../hooks/useTheme';
 
 export default function ThemeToggle() {
   const { theme, toggle } = useTheme();
+  const reduce = useReducedMotion() === true;
   const isDark = theme === 'dark';
 
   return (
     <motion.button
       type="button"
       onClick={toggle}
-      whileHover={{ scale: 1.06 }}
-      whileTap={{ scale: 0.88 }}
+      whileHover={reduce ? undefined : { scale: 1.06 }}
+      whileTap={reduce ? undefined : { scale: 0.88 }}
       transition={{ type: 'spring', stiffness: 500, damping: 28 }}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       title={isDark ? 'Light mode' : 'Dark mode'}
@@ -20,10 +21,10 @@ export default function ThemeToggle() {
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
           key={theme}
-          initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+          initial={reduce ? false : { rotate: -90, opacity: 0, scale: 0.5 }}
           animate={{ rotate: 0, opacity: 1, scale: 1 }}
-          exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
-          transition={{ duration: 0.22, ease: 'easeOut' }}
+          exit={reduce ? undefined : { rotate: 90, opacity: 0, scale: 0.5 }}
+          transition={{ duration: reduce ? 0 : 0.22, ease: 'easeOut' }}
           className="inline-flex"
         >
           {isDark ? (

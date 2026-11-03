@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
+import { EASE } from '../lib/motion';
 import { HiOutlineArrowUpRight } from 'react-icons/hi2';
 import { Page, Block } from '../components/PageTransition';
 import Section from '../components/Section';
@@ -21,6 +22,47 @@ import avatar from '../assets/profile-avatar.jpg';
 const spring = { type: 'spring', stiffness: 300, damping: 18 };
 const VISIBLE_EXPERIENCES = 3;
 
+function SkillGroup({ group }) {
+  const reduce = useReducedMotion();
+
+  return (
+    <div>
+      <motion.h3
+        className="text-sm font-semibold leading-5 text-fg"
+        inherit={false}
+        initial={reduce ? false : { opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: reduce ? 0 : 0.45, ease: EASE }}
+      >
+        {group.label}
+      </motion.h3>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {group.items.map((item, i) => {
+          const tech = resolveTech(item);
+          return (
+            <motion.span
+              key={item}
+              className="inline-flex"
+              inherit={false}
+              initial={reduce ? false : { opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.8 }}
+              transition={{
+                duration: reduce ? 0 : 0.4,
+                delay: reduce ? 0 : 0.04 + i * 0.035,
+                ease: EASE,
+              }}
+            >
+              <TechTile name={tech.name} Icon={tech.Icon} color={tech.color} />
+            </motion.span>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function ExperiencePreview() {
   const visible = experience.slice(0, VISIBLE_EXPERIENCES);
 
@@ -36,7 +78,7 @@ function ExperiencePreview() {
       <Block className="mt-4 flex justify-center">
         <Link
           to="/work"
-          className="inline-block rounded-lg border border-line-strong px-4 py-2 text-sm text-fg-muted transition-colors duration-200 hover:border-fg/30 hover:text-fg"
+          className="inline-block rounded-lg border border-line-strong px-4 py-2 text-sm text-fg-muted transition-[color,border-color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:border-fg/30 hover:text-fg"
         >
           Show all work experiences
         </Link>
@@ -57,9 +99,12 @@ export default function Home() {
           alt={`${profile.name} portrait`}
           width={96}
           height={96}
-          whileHover={reduce ? undefined : { scale: 1.05, rotate: -3 }}
-          whileTap={reduce ? undefined : { scale: 0.97 }}
-          transition={spring}
+          inherit={false}
+          initial={reduce ? false : { scale: 0.94 }}
+          animate={{ scale: 1 }}
+          whileHover={reduce ? undefined : { scale: 1.05, rotate: -3, transition: spring }}
+          whileTap={reduce ? undefined : { scale: 0.97, transition: spring }}
+          transition={reduce ? { duration: 0 } : { duration: 0.7, ease: EASE, delay: 0.06 }}
           className="hairline h-20 w-20 shrink-0 cursor-pointer rounded-full border object-cover object-center transition-[border-color,box-shadow] duration-300 hover:border-line-strong hover:shadow-[0_12px_30px_-14px_rgba(0,0,0,0.45)] sm:h-24 sm:w-24"
         />
         <div className="min-w-0">
@@ -101,7 +146,7 @@ export default function Home() {
                   rel={external ? 'noopener noreferrer' : undefined}
                   aria-label={s.label}
                   title={s.label}
-                  className="group relative inline-flex text-fg-subtle transition-colors duration-200 hover:text-fg focus-visible:text-fg"
+                  className="group relative inline-flex text-fg-subtle transition-[color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:text-fg focus-visible:-translate-y-0.5 focus-visible:text-fg"
                 >
                   <s.Icon className="h-[18px] w-[18px]" aria-hidden="true" />
                   <span
@@ -148,15 +193,7 @@ export default function Home() {
       <Section index="04" title="Skills">
         <div className="space-y-6">
           {skillGroups.map((group) => (
-            <div key={group.id}>
-              <h3 className="text-sm font-semibold leading-5 text-fg">{group.label}</h3>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {group.items.map((item) => {
-                  const tech = resolveTech(item);
-                  return <TechTile key={item} name={tech.name} Icon={tech.Icon} color={tech.color} />;
-                })}
-              </div>
-            </div>
+            <SkillGroup key={group.id} group={group} />
           ))}
         </div>
       </Section>
