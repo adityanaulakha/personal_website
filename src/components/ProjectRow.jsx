@@ -8,6 +8,7 @@ import TiltCard from './TiltCard';
 import { EASE } from '../lib/motion';
 
 function ProjectTech({ project }) {
+  const reduce = useReducedMotion();
   if (!project.tech?.length) return null;
   return (
     <div className="flex flex-wrap gap-2">
@@ -16,10 +17,10 @@ function ProjectTech({ project }) {
         return (
           <motion.span
             key={name}
-            initial={{ opacity: 0, y: 6 }}
+            initial={reduce ? false : { opacity: 0, y: 6 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: i * 0.04, ease: EASE }}
+            transition={{ duration: reduce ? 0 : 0.35, delay: reduce ? 0 : i * 0.04, ease: EASE }}
             className="inline-flex"
           >
             <TechTile name={tech.name} Icon={tech.Icon} color={tech.color} />

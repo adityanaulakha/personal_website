@@ -23,7 +23,7 @@ export default function CopyEmail({ email }) {
     <button
       type="button"
       onClick={copy}
-      className="group relative inline-flex h-5 w-5 shrink-0 items-center justify-center text-fg-subtle transition-colors duration-200 hover:text-fg"
+      className="group relative inline-flex h-5 w-5 shrink-0 items-center justify-center text-fg-subtle transition-[color,transform] duration-300 ease-out hover:scale-110 hover:text-fg focus-visible:scale-110"
       aria-label={copied ? 'Copied' : `Copy ${email}`}
       title={copied ? 'Copied' : 'Copy email'}
     >

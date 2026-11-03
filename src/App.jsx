@@ -1,11 +1,11 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'motion/react';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import SiteNav from './components/SiteNav';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import ScrollProgress from './components/ScrollProgress';
+import { RouteTransition } from './components/PageTransition';
 import Home from './pages/Home';
 import Work from './pages/Work';
 import Projects from './pages/Projects';
@@ -32,15 +32,15 @@ export default function App() {
       <div className="mx-auto flex min-h-dvh w-full max-w-2xl flex-col px-5 sm:px-6">
         <SiteNav />
         <main id="main" className="flex-1 pt-8 pb-16">
-          <AnimatePresence mode="wait">
-            <Routes location={location} key={location.pathname}>
+          <RouteTransition routeKey={location.pathname}>
+            <Routes location={location}>
               <Route path="/" element={<Home />} />
               <Route path="/work" element={<Work />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/achievements" element={<Achievements />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </AnimatePresence>
+          </RouteTransition>
         </main>
         <Footer />
       </div>
